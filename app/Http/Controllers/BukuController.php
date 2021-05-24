@@ -41,7 +41,36 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->file('gambar')) {
+            $img_name = $request->file('gambar')->store('gambar', 'public');
+        }
+
+        // Buku::create([
+        //     'title' => $request->title,
+        //     'content' => $request->content,
+        //     'gambar' => $img_name,
+        // ]);
+
+        $request->validate([
+            'id_buku' => 'required',
+            'judul' => 'required',
+            'penulis' => 'required',
+            'cetakan' => 'required',
+            'penerbit' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        $buku = new Buku;
+        $buku->id_buku = $request->id_buku;
+        $buku->judul = $request->judul;
+        $buku->penulis = $request->penulis;
+        $buku->cetakan = $request->cetakan;
+        $buku->gambar = $img_name;
+        $buku->penerbit = $request->penerbit;
+        $buku->keterangan = $request->keterangan;
+        $buku->save();
+
+        return redirect('buku');
     }
 
     /**

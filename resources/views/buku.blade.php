@@ -1,6 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
+@if(!empty($message))
+  <div class="alert alert-success"> {{ $message }}</div>
+@endif
 <div id="table-buku" >
     <a href="{{ route('buku.create')}}" class="btn btn-primary"> Tambah Buku </a>
     <br>
@@ -11,6 +14,7 @@
             <th>ID BUKU</th>
             <th>JUDUL</th>
             <th>PENULIS</th>
+            <th>GAMBAR</th>
             <th>PENERBIT</th>
             <th>CETAKAN</th>
             <th>KETERANGAN</th>
@@ -22,6 +26,7 @@
                 <td>{{$b->id_buku}}</td>
                 <td>{{$b->judul}}</td>
                 <td>{{$b->penulis}}</td>
+                <td><img src="{{ 'storage/'. $b->gambar }}" width="150px"></td>
                 <td>{{$b->penerbit}}</td>
                 <td>{{$b->cetakan}}</td>
                 <td>{{$b->keterangan}}</td>
