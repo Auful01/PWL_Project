@@ -71,10 +71,10 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb mb-0">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Data Barang</li>
                                     </ol>
                                 </nav>
-                                <h1 class="m-0">Dashboard</h1>
+                                <h1 class="m-0">Data Barang</h1>
                             </div>
                             <div class="flatpickr-wrapper ml-3">
                                 <div id="recent_orders_date" data-toggle="flatpickr" data-flatpickr-wrap="true"

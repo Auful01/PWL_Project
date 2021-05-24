@@ -52,23 +52,23 @@ class BukuController extends Controller
         // ]);
 
         $request->validate([
-            'id_buku' => 'required',
-            'judul' => 'required',
-            'penulis' => 'required',
-            'cetakan' => 'required',
-            'penerbit' => 'required',
-            'keterangan' => 'required'
-        ]);
+                'kode' => 'required',
+                'nama_barang' => 'required',
+                'kategori' => 'required',
+                'jumlah' => 'required',
+                'harga_barang' => 'required',
+                'harga_sewa' => 'required'
+            ]);
 
-        $buku = new Buku;
-        $buku->id_buku = $request->id_buku;
-        $buku->judul = $request->judul;
-        $buku->penulis = $request->penulis;
-        $buku->cetakan = $request->cetakan;
-        $buku->gambar = $img_name;
-        $buku->penerbit = $request->penerbit;
-        $buku->keterangan = $request->keterangan;
-        $buku->save();
+            $buku = new Buku();
+            $buku->kode = $request->kode;
+            $buku->nama_barang = $request->nama_barang;
+            $buku->kategori = $request->kategori;
+            $buku->jumlah = $request->jumlah;
+            $buku->gambar = $img_name;
+            $buku->harga_barang = $request->harga_barang;
+            $buku->harga_sewa = $request->harga_sewa;
+            $buku->save();
 
         return redirect('buku');
     }

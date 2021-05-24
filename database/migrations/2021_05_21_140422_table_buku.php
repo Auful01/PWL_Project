@@ -14,13 +14,13 @@ class TableBuku extends Migration
     public function up()
     {
         Schema::create('buku', function (Blueprint $table) {
-            $table->id('id_buku');
-            $table->string('judul', 20);
-            $table->string('penulis', 20);
+            $table->id('kode');
+            $table->string('nama_barang', 20);
+            $table->string('kategori', 20);
             $table->string('gambar', 255);
-            $table->string('cetakan', 255);
-            $table->string('penerbit', 255);
-            $table->string('keterangan', 255);
+            $table->string('jumlah', 255);
+            $table->string('harga_barang', 255);
+            $table->string('harga_sewa', 255);
             $table->timestamps();
         });
     }

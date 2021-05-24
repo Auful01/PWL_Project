@@ -7,21 +7,21 @@
     <div class="d-flex justify-content-center mt-2 mb-5 navbar-light">
         <a href="index.html" class="navbar-brand" style="min-width: 0">
             <img class="navbar-brand-icon" src="{{asset('images/stack-logo-blue.svg')}}" width="25" alt="FlowDash">
-            <span>Tambah Buku</span>
+            <span>Tambah Barang</span>
         </a>
     </div>
 
-    <h4 class="m-0">Tambah Buku</h4>
+    <h4 class="m-0">Tambah Barang</h4>
     <br>
     {{-- <p class="mb-5">Create an account with FlowDash</p> --}}
 
     <form action="{{ route('buku.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label class="text-label" for="id_buku">ID BUKU</label>
+            <label class="text-label" for="id_buku">Kode</label>
             <div class="input-group input-group-merge ">
-                <input id="id_buku" name="id_buku" type="text" required="" class="form-control form-control-prepended"
-                    placeholder="John Doe">
+                <input id="kode" name="kode" type="text" required="" class="form-control form-control-prepended"
+                    placeholder="001">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <span class="far fa-user"></span>
@@ -30,10 +30,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="text-label" for="judul">JUDUL</label>
+            <label class="text-label" for="judul">Nama Barang</label>
             <div class="input-group input-group-merge">
-                <input id="judul"  name="judul"type="text" required="" class="form-control form-control-prepended"
-                    placeholder="John Doe">
+                <input id="nama_barang"  name="nama_barang"type="text" required="" class="form-control form-control-prepended"
+                placeholder="Canon">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <span class="far fa-user"></span>
@@ -42,10 +42,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="text-label" for="penulis">PENULIS</label>
+            <label class="text-label" for="penulis">Kategori</label>
             <div class="input-group input-group-merge">
-                <input id="penulis" name="penulis" type="text" required="" class="form-control form-control-prepended"
-                    placeholder="John Doe">
+                <input id="kategori" name="kategori" type="text" required="" class="form-control form-control-prepended"
+                placeholder="kamera">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <span class="far fa-user"></span>
@@ -65,10 +65,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="text-label" for="cetakan">CETAKAN</label>
+            <label class="text-label" for="cetakan">Jumlah</label>
             <div class="input-group input-group-merge">
-                <input id="cetakan" name="cetakan" type="text" required="" class="form-control form-control-prepended"
-                    placeholder="John Doe">
+                <input id="jumlah" name="jumlah" type="text" required="" class="form-control form-control-prepended"
+                    placeholder="1">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <span class="far fa-user"></span>
@@ -77,10 +77,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="text-label" for="penerbit">PENERBIT</label>
+            <label class="text-label" for="penerbit">Harga Barang(RP)</label>
             <div class="input-group input-group-merge">
-                <input id="penerbit" name="penerbit" type="text" required="" class="form-control form-control-prepended"
-                    placeholder="John Doe">
+                <input id="harga_barang" name="harga_barang" type="text" required="" class="form-control form-control-prepended"
+                    placeholder="Rp.">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <span class="far fa-user"></span>
@@ -89,23 +89,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="text-label" for="keterangan">KETERANGAN</label>
+            <label class="text-label" for="penerbit">Harga Sewa(RP)</label>
             <div class="input-group input-group-merge">
-                <textarea name="keterangan" id="keterangan" class="form-control form-control-prepended" cols="30" rows="10"></textarea>
+                <input id="harga_sewa" name="harga_sewa" type="text" required="" class="form-control form-control-prepended"
+                    placeholder="Rp.">
                 <div class="input-group-prepend">
-                    <div class="input-group-text" style="position: fixed-top" >
-                        <span class="far fa-user" ></span>
+                    <div class="input-group-text">
+                        <span class="far fa-user"></span>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="form-group text-center">
-            <button class="btn btn-primary mb-2" type="submit">Tambah Buku</button><br>
+           <div class="form-group text-center">
+            <button class="btn btn-primary mb-2" type="submit">Tambah Barang</button><br>
             {{-- <a class="text-body text-underline" href="login.html">Have an account? Login</a> --}}
         </div>
     </form>
 </div>
-
-
 @endsection
