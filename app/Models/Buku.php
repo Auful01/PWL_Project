@@ -11,16 +11,16 @@ class Buku extends Model
     use HasFactory;
     protected $table = "buku";
     public $timestamps = false;
-    protected $primaryKey = "id_buku";
+    protected $primaryKey = "kode";
 
 
     protected $fillable = [
-        'id_buku',
-        'judul',
-        'penulis',
-        'gambar',
-        'cetakan',
-        'penerbit',
-        'keterangan'
+        'kode',
+        'nama_barang',
+        'kategori',
+        'GAMBAR',
+        'jumlah',
+        'harga_Barang',
+        'harga_sewa'
     ];
 }

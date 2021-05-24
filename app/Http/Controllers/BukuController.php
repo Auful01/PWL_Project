@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\BukuModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Bus;
+use PDF;
 
 class BukuController extends Controller
 {
@@ -90,9 +92,11 @@ class BukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kode)
     {
-        //
+        // Menampilkan detail data dengan menemukan berdasarkan nim Mahasiswa untuk diedit
+        $buku = Buku::find($kode);
+        return view('editBuku', compact('buku'));
     }
 
     /**
@@ -102,9 +106,24 @@ class BukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode)
     {
-        //
+        // Melakukan validasi data
+        $request->validate([
+            'kode' => 'required',
+                'nama_barang' => 'required',
+                'kategori' => 'required',
+                'jumlah' => 'required',
+                'harga_barang' => 'required',
+                'harga_sewa' => 'required'
+        ]);
+
+        // Funsgi eloquent untuk mengupdate data inputan kita
+        Buku::find($kode)->update($request->all());
+
+        // Jika data berhasil diupdata, akan kembali ke halaman utama
+        return redirect()->route('buku')
+            ->with('success', 'Data Barang Berhasil Diupdate');
     }
 
     /**
@@ -113,8 +132,15 @@ class BukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode)
     {
-        //
+        Buku::find($kode)->delete();
+        return redirect()->route('buku')
+            ->with('success', 'Data Barang Berhasil Dihapus');
+    }
+    public function cetak_pdf(){
+        $buku = Buku::all();
+        $pdf = PDF::loadview('cetak',['buku'=>$buku]);
+        return $pdf->stream();
     }
 }
