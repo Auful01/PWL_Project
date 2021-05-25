@@ -29,22 +29,31 @@
         </tr>
     </thead>
     <tbody>
+        <?php $d = 1 ?>
         @foreach ($buku as $b)
             <tr>
-                <td>{{$b->kode}}</td>
-                <td>{{$b->nama_barang}}</td>
-                <td>{{$b->kategori}}</td>
-                <td><img src="{{ 'storage/'. $b->gambar }}" width="150px"></td>
-                <td>{{$b->jumlah}}</td>
-                <td>{{$b->harga_barang}}</td>
-                <td>{{$b->harga_sewa}}</td>
+                <td><?php echo $d ?></td>
+                <td>{{$b->judul}}</td>
+                <td>{{$b->penulis}}</td>
+                <td>
+                    @if ('storage/'. $b->gambar != NULL)
+                        <img src="{{ 'storage/'. $b->gambar }}" width="150px"></td>
+                    @else
+                        <a href="#" class="btn btn-warn">UPLOAD</a>
+                    @endif
+
+                <td>{{$b->cetakan}}</td>
+                <td>{{$b->penerbit}}</td>
+                <td>{{$b->keterangan}}</td>
+                <td><form action="{{ route('buku.destroy',$b->id_buku) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('buku.edit',$b->id_buku) }}">Edit</a>
+                        @csrf
+                        @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form></td>
             </tr>
-            {{-- <form action="{{ route('buku.destroy',$buku->kode) }}" method="POST">
-                <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$buku->kode) }}">Edit</a>
-                    @csrf
-                    @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form> --}}
+
+            <?php $d++?>
         @endforeach
     </tbody>
     </table>

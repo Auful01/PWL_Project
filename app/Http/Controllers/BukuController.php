@@ -54,23 +54,23 @@ class BukuController extends Controller
         // ]);
 
         $request->validate([
-                'kode' => 'required',
-                'nama_barang' => 'required',
-                'kategori' => 'required',
-                'jumlah' => 'required',
-                'harga_barang' => 'required',
-                'harga_sewa' => 'required'
-            ]);
+            'kode' => 'required',
+            'nama_barang' => 'required',
+            'kategori' => 'required',
+            'jumlah' => 'required',
+            'harga_barang' => 'required',
+            'harga_sewa' => 'required'
+        ]);
 
-            $buku = new Buku();
-            $buku->kode = $request->kode;
-            $buku->nama_barang = $request->nama_barang;
-            $buku->kategori = $request->kategori;
-            $buku->jumlah = $request->jumlah;
-            $buku->gambar = $img_name;
-            $buku->harga_barang = $request->harga_barang;
-            $buku->harga_sewa = $request->harga_sewa;
-            $buku->save();
+        $buku = new Buku();
+        $buku->kode = $request->kode;
+        $buku->nama_barang = $request->nama_barang;
+        $buku->kategori = $request->kategori;
+        $buku->jumlah = $request->jumlah;
+        $buku->gambar = $img_name;
+        $buku->harga_barang = $request->harga_barang;
+        $buku->harga_sewa = $request->harga_sewa;
+        $buku->save();
 
         return redirect('buku');
     }
@@ -92,11 +92,12 @@ class BukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($kode)
+    public function edit($id)
     {
         // Menampilkan detail data dengan menemukan berdasarkan nim Mahasiswa untuk diedit
-        $buku = Buku::find($kode);
-        return view('editBuku', compact('buku'));
+        // $buku = Buku::find($id);
+        // return view('editBuku', compact('buku'));
+        return view('editBuku');
     }
 
     /**
@@ -111,11 +112,11 @@ class BukuController extends Controller
         // Melakukan validasi data
         $request->validate([
             'kode' => 'required',
-                'nama_barang' => 'required',
-                'kategori' => 'required',
-                'jumlah' => 'required',
-                'harga_barang' => 'required',
-                'harga_sewa' => 'required'
+            'nama_barang' => 'required',
+            'kategori' => 'required',
+            'jumlah' => 'required',
+            'harga_barang' => 'required',
+            'harga_sewa' => 'required'
         ]);
 
         // Funsgi eloquent untuk mengupdate data inputan kita
@@ -138,9 +139,10 @@ class BukuController extends Controller
         return redirect()->route('buku')
             ->with('success', 'Data Barang Berhasil Dihapus');
     }
-    public function cetak_pdf(){
+    public function cetak_pdf()
+    {
         $buku = Buku::all();
-        $pdf = PDF::loadview('cetak',['buku'=>$buku]);
+        $pdf = PDF::loadview('cetak', ['buku' => $buku]);
         return $pdf->stream();
     }
 }

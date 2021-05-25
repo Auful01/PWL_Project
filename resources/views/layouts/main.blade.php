@@ -71,17 +71,16 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb mb-0">
                                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Data Barang</li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ Request::segment(1)}}</li>
                                     </ol>
                                 </nav>
-                                <h1 class="m-0">Data Barang</h1>
+                                <h1 class="m-0">{{ Request::segment(1)}}</h1>
                             </div>
                             <div class="flatpickr-wrapper ml-3">
                                 <div id="recent_orders_date" data-toggle="flatpickr" data-flatpickr-wrap="true"
                                     data-flatpickr-mode="range" data-flatpickr-alt-format="d/m/Y"
                                     data-flatpickr-date-format="d/m/Y">
-                                    <a href="javascript:void(0)" class="link-date" data-toggle>13/03/2018 to
-                                        20/03/2018</a>
+                                    <a href="javascript:void(0)" class="link-date" data-toggle>{{ date('Y/m/d | H:i:s') }}</a>
                                     <input class="flatpickr-hidden-input" type="hidden" value="13/03/2018 to 20/03/2018"
                                         data-input>
                                 </div>

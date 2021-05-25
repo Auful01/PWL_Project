@@ -4,7 +4,7 @@
             <div class="sidebar-heading">Menu</div>
             <ul class="sidebar-menu">
                 <li class="sidebar-menu-item active open">
-                    <a class="sidebar-menu-button" data-toggle="collapse" href="#dashboards_menu">
+                    <a class="sidebar-menu-button" href="{{ url('/dashboard')}}">
                         {{-- <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
                          --}}
                          &nbsp; <i class="fas fa-home"></i>
@@ -108,7 +108,7 @@
                 </li>
 
                 <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button" data-toggle="collapse" href="#pages_menu">
+                    <a class="sidebar-menu-button" href="{{route('buku.index')}}">
                         <i
                             class="sidebar-menu-icon sidebar-menu-icon--left material-icons">description</i>
                         <span class="sidebar-menu-text">Data Barang</span>

@@ -14,8 +14,8 @@
     <h4 class="m-0">Edit Data Barang</h4>
     <br>
     {{-- <p class="mb-5">Create an account with FlowDash</p> --}}
-
-    <form action="{{ route('buku.update')}}" method="POST" enctype="multipart/form-data">
+    {{--  action="{{ route('buku.update')}}" --}}
+    <form method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label class="text-label" for="kode">Kode</label>

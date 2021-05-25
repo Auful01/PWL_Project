@@ -20,3 +20,6 @@ Route::get('/', function () {
 
 Route::resource('buku', BukuController::class);
 Route::get('/laporan/barang', [BukuController::class, 'cetak_pdf']);
+Route::get('/dashboard', function () {
+    return view('layouts.index');
+});
