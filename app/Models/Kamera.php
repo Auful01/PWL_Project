@@ -5,22 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Buku extends Model
+class Kamera extends Model
 {
     use HasFactory;
-    protected $table = "buku";
+    protected $table = "kamera";
     public $timestamps = false;
     protected $primaryKey = "kode";
 
 
     protected $fillable = [
         'kode',
-        'nama_barang',
-        'kategori',
-        'GAMBAR',
-        'jumlah',
-        'harga_Barang',
+        'merek',
+        'tipe',
+        'gambar',
         'harga_sewa'
     ];
+
+
+    public function merek()
+    {
+        return $this->belongsTo(Merek::class);
+    }
 }

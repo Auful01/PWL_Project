@@ -4,8 +4,8 @@
 @if(!empty($message))
   <div class="alert alert-success"> {{ $message }}</div>
 @endif
-<div id="table-buku" >
-    <a href="{{ route('buku.create')}}" class="btn btn-primary"> Tambah Barang </a>
+<div id="table-kamera" >
+    <a href="{{ route('kamera.create')}}" class="btn btn-primary"> Tambah Barang </a>
     <a class="btn btn-primary" href="{{ url('/laporan/barang') }}">  Download Data </a>
 
     <br>
@@ -19,22 +19,20 @@
         <thead>
         <tr>
             <th>Kode</th>
-            <th>Nama Barang</th>
-            <th>Kategori</th>
+            <th>Tipe</th>
+            <th>Merek</th>
             <th>GAMBAR</th>
-            <th>Jumlah</th>
-            <th>Harga Barang(RP)</th>
-            <th>Harga Sewa(RP)</th>
+            <th>Harga Sewa</th>
             <th> Action</th>
         </tr>
     </thead>
     <tbody>
         <?php $d = 1 ?>
-        @foreach ($buku as $b)
+        @foreach ($kamera as $b)
             <tr>
                 <td><?php echo $d ?></td>
-                <td>{{$b->judul}}</td>
-                <td>{{$b->penulis}}</td>
+                <td>{{$b->tipe}}</td>
+                <td>{{$b->merek}}</td>
                 <td>
                     @if ('storage/'. $b->gambar != NULL)
                         <img src="{{ 'storage/'. $b->gambar }}" width="150px"></td>
@@ -42,11 +40,9 @@
                         <a href="#" class="btn btn-warn">UPLOAD</a>
                     @endif
 
-                <td>{{$b->cetakan}}</td>
-                <td>{{$b->penerbit}}</td>
-                <td>{{$b->keterangan}}</td>
-                <td><form action="{{ route('buku.destroy',$b->id_buku) }}" method="POST">
-                    <a class="btn btn-primary" href="{{ route('buku.edit',$b->id_buku) }}">Edit</a>
+                <td>{{$b->harga_sewa}}</td>
+                <td><form action="{{ route('kamera.destroy',$b->id_kamera) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('kamera.edit',$b->id_kamera) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>

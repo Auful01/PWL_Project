@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\KameraController;
+use App\Http\Controllers\MerekController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('buku', BukuController::class);
-Route::get('/laporan/barang', [BukuController::class, 'cetak_pdf']);
+Route::resource('kamera', KameraController::class);
+Route::get('/laporan/barang', [KameraController::class, 'cetak_pdf']);
 Route::get('/dashboard', function () {
     return view('layouts.index');
 });
+Route::resource('merek', MerekController::class);

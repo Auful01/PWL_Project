@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buku;
-use App\Models\BukuModel;
+use App\Models\kamera;
+use App\Models\kameraModel;
+use App\Models\Merek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
 use PDF;
 
-class BukuController extends Controller
+class KameraController extends Controller
 {
     // public function __construct()
     // {
@@ -21,8 +22,8 @@ class BukuController extends Controller
      */
     public function index()
     {
-        $buku =  Buku::all();
-        return view('buku', compact('buku'));
+        $kamera =  kamera::with('merek')->get();
+        return view('kamera', ['kamera' => $kamera]);
     }
 
     /**
@@ -32,7 +33,8 @@ class BukuController extends Controller
      */
     public function create()
     {
-        return view('createBuku');
+        $merek = Merek::all();
+        return view('createkamera', compact('merek'));
     }
 
     /**
@@ -47,7 +49,7 @@ class BukuController extends Controller
             $img_name = $request->file('gambar')->store('gambar', 'public');
         }
 
-        // Buku::create([
+        // kamera::create([
         //     'title' => $request->title,
         //     'content' => $request->content,
         //     'gambar' => $img_name,
@@ -55,24 +57,23 @@ class BukuController extends Controller
 
         $request->validate([
             'kode' => 'required',
-            'nama_barang' => 'required',
-            'kategori' => 'required',
-            'jumlah' => 'required',
-            'harga_barang' => 'required',
+            'tipe' => 'required',
+            'merek' => 'required',
             'harga_sewa' => 'required'
         ]);
 
-        $buku = new Buku();
-        $buku->kode = $request->kode;
-        $buku->nama_barang = $request->nama_barang;
-        $buku->kategori = $request->kategori;
-        $buku->jumlah = $request->jumlah;
-        $buku->gambar = $img_name;
-        $buku->harga_barang = $request->harga_barang;
-        $buku->harga_sewa = $request->harga_sewa;
-        $buku->save();
+        $kamera = new kamera();
+        $kamera->kode = $request->get('kode');
+        $kamera->tipe = $request->get('tipe');
+        $kamera->gambar = $img_name;
+        $kamera->harga_sewa = $request->get('harga_sewa');
 
-        return redirect('buku');
+        $merek = new Merek();
+        $merek->id_merek = $request->get('merek');
+        $kamera->merek()->associate($merek);
+        $kamera->save();
+
+        return redirect('kamera');
     }
 
     /**
@@ -95,9 +96,9 @@ class BukuController extends Controller
     public function edit($id)
     {
         // Menampilkan detail data dengan menemukan berdasarkan nim Mahasiswa untuk diedit
-        // $buku = Buku::find($id);
-        // return view('editBuku', compact('buku'));
-        return view('editBuku');
+        // $kamera = kamera::find($id);
+        // return view('editkamera', compact('kamera'));
+        return view('editkamera');
     }
 
     /**
@@ -112,18 +113,16 @@ class BukuController extends Controller
         // Melakukan validasi data
         $request->validate([
             'kode' => 'required',
-            'nama_barang' => 'required',
-            'kategori' => 'required',
-            'jumlah' => 'required',
-            'harga_barang' => 'required',
+            'tipe' => 'required',
+            'merek' => 'required',
             'harga_sewa' => 'required'
         ]);
 
         // Funsgi eloquent untuk mengupdate data inputan kita
-        Buku::find($kode)->update($request->all());
+        kamera::find($kode)->update($request->all());
 
         // Jika data berhasil diupdata, akan kembali ke halaman utama
-        return redirect()->route('buku')
+        return redirect()->route('kamera')
             ->with('success', 'Data Barang Berhasil Diupdate');
     }
 
@@ -135,14 +134,14 @@ class BukuController extends Controller
      */
     public function destroy($kode)
     {
-        Buku::find($kode)->delete();
-        return redirect()->route('buku')
+        kamera::find($kode)->delete();
+        return redirect()->route('kamera')
             ->with('success', 'Data Barang Berhasil Dihapus');
     }
     public function cetak_pdf()
     {
-        $buku = Buku::all();
-        $pdf = PDF::loadview('cetak', ['buku' => $buku]);
+        $kamera = kamera::all();
+        $pdf = PDF::loadview('cetak', ['kamera' => $kamera]);
         return $pdf->stream();
     }
 }

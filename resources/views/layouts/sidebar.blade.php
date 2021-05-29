@@ -108,7 +108,7 @@
                 </li>
 
                 <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button" href="{{route('buku.index')}}">
+                    <a class="sidebar-menu-button" href="{{route('kamera.index')}}">
                         <i
                             class="sidebar-menu-icon sidebar-menu-icon--left material-icons">description</i>
                         <span class="sidebar-menu-text">Data Barang</span>

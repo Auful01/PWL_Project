@@ -15,10 +15,10 @@
     <br>
     {{-- <p class="mb-5">Create an account with FlowDash</p> --}}
 
-    <form action="{{ route('buku.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('kamera.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label class="text-label" for="id_buku">Kode</label>
+            <label class="text-label" for="id_kamera">Kode</label>
             <div class="input-group input-group-merge ">
                 <input id="kode" name="kode" type="text" required="" class="form-control form-control-prepended"
                     placeholder="001">
@@ -30,10 +30,17 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="text-label" for="judul">Nama Barang</label>
+            <label class="text-label" for="judul">Merek</label>
             <div class="input-group input-group-merge">
-                <input id="nama_barang"  name="nama_barang"type="text" required="" class="form-control form-control-prepended"
-                placeholder="Canon">
+                {{-- <input id="merek"  name="merek"type="text" required="" class="form-control form-control-prepended"
+                placeholder="Canon"> --}}
+                <select name="merek" id="merek" class="form-control form-control-prepended">
+                    @foreach ($merek as $m)
+                        <option value="{{$m->id_merek}}">{{$k->merek}}</option>
+                    @endforeach
+                    {{-- <a href="{{route('merek.create')}}">Tambah merek</a> --}}
+
+                </select>
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <span class="far fa-user"></span>
@@ -42,7 +49,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="text-label" for="penulis">Kategori</label>
+            <label class="text-label" for="penulis">Tipe</label>
             <div class="input-group input-group-merge">
                 <input id="kategori" name="kategori" type="text" required="" class="form-control form-control-prepended"
                 placeholder="kamera">
@@ -57,30 +64,6 @@
             <label class="text-label" for="gambar">GAMBAR</label>
             <div class="input-group input-group-merge">
                 <input id="gambar" name="gambar" type="file" required="" class="form-control form-control-prepended" style="padding: 2px;">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <span class="far fa-user"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="text-label" for="cetakan">Jumlah</label>
-            <div class="input-group input-group-merge">
-                <input id="jumlah" name="jumlah" type="text" required="" class="form-control form-control-prepended"
-                    placeholder="1">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <span class="far fa-user"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="text-label" for="penerbit">Harga Barang(RP)</label>
-            <div class="input-group input-group-merge">
-                <input id="harga_barang" name="harga_barang" type="text" required="" class="form-control form-control-prepended"
-                    placeholder="Rp.">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <span class="far fa-user"></span>
