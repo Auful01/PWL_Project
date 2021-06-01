@@ -27,6 +27,8 @@ Route::get('/dashboard', function () {
     return view('layouts.index');
 });
 Route::resource('merek', MerekController::class);
+
 Route::resource('anggota', anggotaController::class);
+
 Route::get('/laporan/anggota', [anggotaController::class, 'cetak_pdf']);
 

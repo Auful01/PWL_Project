@@ -86,12 +86,14 @@ class AnggotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kode)
     {
         // Menampilkan detail data dengan menemukan berdasarkan nim Mahasiswa untuk diedit
         // $kamera = kamera::find($id);
         // return view('editkamera', compact('kamera'));
-        return view('anggota.edit');
+        // return view('editAnggota');
+        $anggota = anggota::find($kode);
+        return view('editAnggota', compact('anggota'));
     }
 
     /**
@@ -104,19 +106,20 @@ class AnggotaController extends Controller
     public function update(Request $request, $kode)
     {
         // Melakukan validasi data
-        // $request->validate([
-        //     'kode' => 'required',
-        //     'tipe' => 'required',
-        //     'merek' => 'required',
-        //     'harga_sewa' => 'required'
-        // ]);
+        $request->validate([
+            'kode' => 'required',
+            'nama_pelanggan' => 'required',
+            'no_telepon' => 'required',
+            'alamat' => 'required',
+            'pekerjaan' => 'required'
+        ]);
 
         // // Funsgi eloquent untuk mengupdate data inputan kita
-        // kamera::find($kode)->update($request->all());
+        anggota::find($kode)->update($request->all());
 
         // // Jika data berhasil diupdata, akan kembali ke halaman utama
-        // return redirect()->route('kamera')
-        //     ->with('success', 'Data Barang Berhasil Diupdate');
+        return redirect()->route('anggota.index')
+            ->with('success', 'Data Anggota Berhasil Diupdate');
     }
 
     /**
@@ -127,9 +130,9 @@ class AnggotaController extends Controller
      */
     public function destroy($kode)
     {
-        // anggota::find($kode)->delete();
-        // return redirect()->route('anggota')
-        // ->with('success', 'Data Barang Berhasil Dihapus');
+        anggota::find($kode)->delete();
+        return redirect()->route('anggota.index')
+        ->with('success', 'Data Anggota Berhasil Dihapus');
     }
     public function cetak_pdf(){
         $anggota = anggota::all();

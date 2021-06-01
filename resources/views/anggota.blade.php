@@ -34,12 +34,12 @@
                 <td>{{$a->no_telepon}}</td>
                 <td>{{$a->alamat}}</td>
                 <td>{{$a->pekerjaan}}</td>
-                {{-- <td><form action="{{ route('anggota.destroy',$a->id_anggota) }}" method="POST">
-                    <a class="btn btn-primary" href="{{ route('anggota.edit',$a->id_anggota) }}">Edit</a>
-                        @csrf
+                <td><form action="{{ route('anggota.destroy',$a->kode) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('anggota.edit',$a->kode) }}">Edit</a>
+                         @csrf
                         @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
-                </form></td> --}}
+                </form></td>
             </tr>
 
             <?php $a++?>
