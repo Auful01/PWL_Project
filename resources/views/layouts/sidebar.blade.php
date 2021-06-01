@@ -54,10 +54,11 @@
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="app-trello.html">
+                            <a class="sidebar-menu-button" href="{{route('anggota.index')}}">
                                 <span class="sidebar-menu-text">Anggota</span>
                             </a>
                         </li>
+                        
                         {{-- <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="app-projects.html">
                                 <span class="sidebar-menu-text">Projects</span>
