@@ -14,6 +14,8 @@ class MerekController extends Controller
      */
     public function index()
     {
+        $merek = Merek::all();
+        return view('merek', compact('merek'));
     }
 
     /**

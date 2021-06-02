@@ -40,7 +40,7 @@
                     </ul>
                 </li> --}}
 
-                {{-- <li class="sidebar-menu-item"> --}}
+                <li class="sidebar-menu-item">
                     <a class="sidebar-menu-button" data-toggle="collapse" href="#apps_menu">
                         <i
                             class="sidebar-menu-icon sidebar-menu-icon--left material-icons">slideshow</i>
@@ -58,7 +58,7 @@
                                 <span class="sidebar-menu-text">Anggota</span>
                             </a>
                         </li>
-                        
+
                         {{-- <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="app-projects.html">
                                 <span class="sidebar-menu-text">Projects</span>
@@ -109,12 +109,32 @@
                 </li>
 
                 <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button" href="{{route('kamera.index')}}">
+                    <a class="sidebar-menu-button" data-toggle="collapse" href="#menu">
                         <i
                             class="sidebar-menu-icon sidebar-menu-icon--left material-icons">description</i>
                         <span class="sidebar-menu-text">Data Barang</span>
-                        {{-- <span class="ml-auto sidebar-menu-toggle-icon"></span> --}}
+                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
+                    <ul class="sidebar-submenu collapse" id="menu">
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('kamera.index')}}">
+                                <span class="sidebar-menu-text">Kamera</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('merek.index')}}">
+                                <span class="sidebar-menu-text">Merek</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-button" href="{{route('kamera.index')}}">
+                        <i
+                            class="sidebar-menu-icon sidebar-menu-icon--left material-icons">description</i>
+                        <span class="sidebar-menu-text">Data Barang</span> --}}
+                        {{-- <span class="ml-auto sidebar-menu-toggle-icon"></span> --}}
+                    {{-- </a> --}}
                     {{-- <ul class="sidebar-submenu collapse" id="pages_menu">
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="companies.html">
