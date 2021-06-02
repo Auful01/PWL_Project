@@ -42,14 +42,14 @@ text-transform: uppercase;
                 <th>Harga Sewa(RP)</th>
 
             </tr>
-            @foreach ($buku as $b)
+            @foreach ($kamera as $b)
             <tr>
-                <td>{{$b->kode}}</td>
-                <td>{{$b->nama_barang}}</td>
-                <td>{{$b->kategori}}</td>
+                <td>{{$b->id}}</td>
+                <td>{{$b->merek}}</td>
+                <td>{{$b->tipe}}</td>
                 <td><img src="{{ 'storage/'. $b->gambar }}" width="100px"></td>
-                <td>{{$b->jumlah}}</td>
-                <td>{{$b->harga_barang}}</td>
+                {{-- <td>{{$b->jumlah}}</td>
+                <td>{{$b->harga_barang}}</td> --}}
                 <td>{{$b->harga_sewa}}</td>
                 </tr>
             @endforeach
