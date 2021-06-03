@@ -34,4 +34,4 @@ Route::resource('anggota', anggotaController::class);
 Route::get('/laporan/anggota', [anggotaController::class, 'cetak_pdf']);
 
 Route::resource('user', UserController::class);
-Route::get('/laporan/user', [UserController::class, 'laporan']);
+Route::get('/laporan/user', [UserController::class, 'cetak_pdf']);

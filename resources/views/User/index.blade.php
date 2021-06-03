@@ -20,7 +20,7 @@
         <tr>
             <th>Nama</th>
             <th>username</th>
-            <th>Email</th>
+            <th>E-Mail Address</th>
             <th> Action</th>
         </tr>
     </thead>

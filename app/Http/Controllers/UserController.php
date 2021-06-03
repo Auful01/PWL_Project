@@ -48,9 +48,9 @@ class UserController extends Controller
         //melakukan validasi data
         $request->validate([
             'name' => 'required',
+            'username' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'username' => 'required',
             ]);
 
 
@@ -60,14 +60,13 @@ class UserController extends Controller
             $user->username= $request->get('username');
             $user->email = $request->get('email');
             $user->password = bcrypt($request->get('password'));
-
             $user -> save();
             //User::create($request->all());
             //jika data berhasil ditambahkan, akan kembali ke halaman utama
-            return redirect()->route('user.index')
-            ->with('success', 'Data User Berhasil Ditambahkan');
-    }
-
+            return redirect('user.index');
+            // ->route('user.index')
+            // ->with('success', 'Data User Berhasil Ditambahkan');
+        }
     /**
      * Display the specified resource.
      *
@@ -106,17 +105,17 @@ class UserController extends Controller
         //melakukan validasi data
         $request->validate([
             'name' => 'required',
+            'username' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'username' => 'required',
             ]);
 
         $user = User::find($id);
         //fungsi eloquent untuk mengupdate data inputan kita
         $user->name = $request->get('name');
+        $user->username = $request->get('username');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
-        $user->username = $request->get('username');
 
         $user->save();
         //jika data berhasil diupdate, akan kembali ke halaman utama

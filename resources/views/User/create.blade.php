@@ -7,11 +7,11 @@
     <div class="d-flex justify-content-center mt-2 mb-5 navbar-light">
         <a href="index.html" class="navbar-brand" style="min-width: 0">
             <img class="navbar-brand-icon" src="{{asset('images/stack-logo-blue.svg')}}" width="25" alt="FlowDash">
-            <span>Tambah User</span>
+            <span>Tambah Data User</span>
         </a>
     </div>
 
-    <h4 class="m-0">Tambah User</h4>
+    <h4 class="m-0">Tambah Data User</h4>
     <br>
     {{-- <p class="mb-5">Create an account with FlowDash</p> --}}
 
@@ -19,7 +19,7 @@
         @csrf
         <div class="form-group">
             <label class="text-label" for="nama">Nama</label>
-            <div class="input-group input-group-merge">
+            <div class="input-group input-group-merge ">
                 <input id="nama" name="nama" type="text" required="" class="form-control form-control-prepended">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -74,7 +74,7 @@
             </div>
         </div>
            <div class="form-group text-center">
-            <button class="btn btn-primary mb-2" type="submit">Tambah User</button><br>
+            <button class="btn btn-primary mb-2" type="submit">Tambah Data User</button><br>
             {{-- <a class="text-body text-underline" href="login.html">Have an account? Login</a> --}}
         </div>
     </form>
