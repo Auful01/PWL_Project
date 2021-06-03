@@ -49,7 +49,7 @@
                     </a>
                     <ul class="sidebar-submenu collapse" id="apps_menu">
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="app-activities.html">
+                            <a class="sidebar-menu-button" href="{{route('user.index')}}">
                                 <span class="sidebar-menu-text">User</span>
                             </a>
                         </li>
