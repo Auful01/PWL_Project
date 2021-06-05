@@ -4,8 +4,12 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\KameraController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\AnggotaController;
+<<<<<<< HEAD
 use App\Http\Controllers\PeminjamanController;
 use App\Models\Peminjaman;
+=======
+use App\Http\Controllers\UserController;
+>>>>>>> 26e6698902f613dbb6074579f118f811bc3a8268
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,4 +39,5 @@ Route::resource('anggota', anggotaController::class);
 Route::get('/laporan/anggota', [anggotaController::class, 'cetak_pdf']);
 Route::resource('peminjaman', PeminjamanController::class);
 
-// Route::resource('merek', [UserController::class]);
+Route::resource('user', UserController::class);
+Route::get('/laporan/user', [UserController::class, 'cetak_pdf']);
