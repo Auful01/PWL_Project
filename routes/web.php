@@ -4,6 +4,8 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\KameraController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\PeminjamanController;
+use App\Models\Peminjaman;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,5 +33,6 @@ Route::resource('merek', MerekController::class);
 Route::resource('anggota', anggotaController::class);
 
 Route::get('/laporan/anggota', [anggotaController::class, 'cetak_pdf']);
+Route::resource('peminjaman', PeminjamanController::class);
 
 // Route::resource('merek', [UserController::class]);
