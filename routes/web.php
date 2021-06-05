@@ -4,12 +4,9 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\KameraController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\AnggotaController;
-<<<<<<< HEAD
 use App\Http\Controllers\PeminjamanController;
 use App\Models\Peminjaman;
-=======
 use App\Http\Controllers\UserController;
->>>>>>> 26e6698902f613dbb6074579f118f811bc3a8268
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -18,6 +18,7 @@
     <table id="tableku" class="table table-striped table-bordered dt-responsive nowrap">
         <thead>
         <tr>
+            <th>#</th>
             <th>Nama</th>
             <th>username</th>
             <th>E-Mail Address</th>
@@ -31,15 +32,14 @@
             <td>{{ $data->name }}</td>
             <td>{{ $data->email}}</td>
             <td>{{ $data->username }}</td>
-                <td><form action="{{ route('user.destroy',$a->kode) }}" method="POST">
-                    <a class="btn btn-primary" href="{{ route('user.edit',$a->kode) }}">Edit</a>
+                <td><form action="{{ route('user.destroy',$data->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('user.edit',$data->id) }}">Edit</a>
                          @csrf
                         @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form></td>
             </tr>
 
-            <?php $a++?>
         @endforeach
     </tbody>
     </table>
