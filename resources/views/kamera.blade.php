@@ -32,17 +32,17 @@
             <tr>
                 <td><?php echo $d ?></td>
                 <td>{{$b->tipe}}</td>
-                <td>{{$b->merek}}</td>
+                <td>{{$b->merek->nama_merek }}</td>
                 <td>
                     @if ('storage/'. $b->gambar != NULL)
-                        <img src="{{ 'storage/'. $b->gambar }}" width="150px"></td>
+                        <img src="{{ ' storage/'. $b->gambar }}" width="150px"></td>
                     @else
                         <a href="#" class="btn btn-warn">UPLOAD</a>
                     @endif
 
                 <td>{{$b->harga_sewa}}</td>
-                <td><form action="{{ route('kamera.destroy',$b->id_kamera) }}" method="POST">
-                    <a class="btn btn-primary" href="{{ route('kamera.edit',$b->id_kamera) }}">Edit</a>
+                <td><form action="{{ route('kamera.destroy',$b->kode) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('kamera.edit',$b->kode) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>

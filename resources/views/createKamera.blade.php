@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="layout-login__overlay"></div>
-<div class="layout-login__form bg-white" data-perfect-scrollbar>
+<div class="layout-login__form bg-white"  style="border-radius: 5px;box-shadow:  5px 10px 18px #161616" data-perfect-scrollbar>
     <div class="d-flex justify-content-center mt-2 mb-5 navbar-light">
         <a href="index.html" class="navbar-brand" style="min-width: 0">
             <img class="navbar-brand-icon" src="{{asset('images/stack-logo-blue.svg')}}" width="25" alt="FlowDash">
@@ -18,7 +18,7 @@
     <form action="{{ route('kamera.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label class="text-label" for="id_kamera">Kode</label>
+            <label class="text-label" for="kode">Kode</label>
             <div class="input-group input-group-merge ">
                 <input id="kode" name="kode" type="text" required="" class="form-control form-control-prepended"
                     placeholder="001">
@@ -34,9 +34,9 @@
             <div class="input-group input-group-merge">
                 {{-- <input id="merek"  name="merek"type="text" required="" class="form-control form-control-prepended"
                 placeholder="Canon"> --}}
-                <select name="merek" id="merek" class="form-control form-control-prepended">
+                <select name="id_merek" id="id_merek" class="form-control form-control-prepended">
                     @foreach ($merek as $m)
-                        <option value="{{$m->id_merek}}">{{$k->merek}}</option>
+                        <option value="{{$m->id_merek}}">{{$m->nama_merek}}</option>
                     @endforeach
                     {{-- <a href="{{route('merek.create')}}">Tambah merek</a> --}}
 
@@ -49,9 +49,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="text-label" for="penulis">Tipe</label>
+            <label class="text-label" for="tipe">Tipe</label>
             <div class="input-group input-group-merge">
-                <input id="kategori" name="kategori" type="text" required="" class="form-control form-control-prepended"
+                <input id="tipe" name="tipe" type="text" required="" class="form-control form-control-prepended"
                 placeholder="kamera">
                 <div class="input-group-prepend">
                     <div class="input-group-text">

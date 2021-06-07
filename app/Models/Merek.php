@@ -19,6 +19,6 @@ class Merek extends Model
 
     public function kamera()
     {
-        return $this->hasMany(Kamera::class);
+        return $this->hasMany(Kamera::class, 'kode');
     }
 }

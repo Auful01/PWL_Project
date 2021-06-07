@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Merek;
+use App\Models\Kamera;
 use Illuminate\Http\Request;
 
-class MerekController extends Controller
+class SewaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class MerekController extends Controller
      */
     public function index()
     {
-        $merek = Merek::all();
-        return view('merek', compact('merek'));
+        $kamera =  Kamera::with('merek')->get();
+        return view('User.sewa', ['kamera' => $kamera]);
     }
 
     /**
@@ -25,7 +25,7 @@ class MerekController extends Controller
      */
     public function create()
     {
-        return view('createMerek');
+        //
     }
 
     /**
@@ -36,14 +36,7 @@ class MerekController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'id_merek',
-            'merek'
-        ]);
-
-        Merek::create($request->all());
-        //coba
-        return redirect('merek');
+        //
     }
 
     /**

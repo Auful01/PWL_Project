@@ -17,7 +17,7 @@ class Kamera extends Model
 
     protected $fillable = [
         'kode',
-        'merek',
+        'id_merek',
         'tipe',
         'gambar',
         'harga_sewa'
@@ -26,6 +26,6 @@ class Kamera extends Model
 
     public function merek()
     {
-        return $this->belongsTo(Merek::class);
+        return $this->belongsTo(Merek::class, 'id_merek');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PDF;
+
 class UserController extends Controller
 {
     /**
@@ -14,11 +15,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('search')){ // Pemilihan jika ingin melakukan pencarian
+        if ($request->has('search')) { // Pemilihan jika ingin melakukan pencarian
             $user = User::where('name', 'like', "%" . $request->search . "%")
-            ->orwhere('email', 'like', "%" . $request->search . "%")
-            ->orwhere('username', 'like', "%" . $request->search . "%")
-            ->paginate(5);
+                ->orwhere('email', 'like', "%" . $request->search . "%")
+                ->orwhere('username', 'like', "%" . $request->search . "%")
+                ->paginate(5);
             return view('User.index', compact('user'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
@@ -51,22 +52,22 @@ class UserController extends Controller
             'username' => 'required',
             'email' => 'required',
             'password' => 'required',
-            ]);
+        ]);
 
 
-            //fungsi eloquent untuk menambah data
-            $user = new User;
-            $user->name = $request->get('name');
-            $user->username= $request->get('username');
-            $user->email = $request->get('email');
-            $user->password = bcrypt($request->get('password'));
-            $user -> save();
-            //User::create($request->all());
-            //jika data berhasil ditambahkan, akan kembali ke halaman utama
-            return redirect('user.index');
-            // ->route('user.index')
-            // ->with('success', 'Data User Berhasil Ditambahkan');
-        }
+        //fungsi eloquent untuk menambah data
+        $user = new User;
+        $user->name = $request->get('name');
+        $user->username = $request->get('username');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+        //User::create($request->all());
+        //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect('user.index');
+        // ->route('user.index')
+        // ->with('success', 'Data User Berhasil Ditambahkan');
+    }
     /**
      * Display the specified resource.
      *
@@ -76,8 +77,8 @@ class UserController extends Controller
     public function show($id)
     {
         //menampilkan detail data dengan menemukan berdasarkan id User
-        $user = User::find($id);
-        return view('User.show', compact('user'));
+        // $user = User::find($id);
+        // return view('User.show', compact('user'));
     }
 
     /**
@@ -108,7 +109,7 @@ class UserController extends Controller
             'username' => 'required',
             'email' => 'required',
             'password' => 'required',
-            ]);
+        ]);
 
         $user = User::find($id);
         //fungsi eloquent untuk mengupdate data inputan kita
@@ -120,7 +121,12 @@ class UserController extends Controller
         $user->save();
         //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->route('user.index')
-        ->with('success', 'Data User Berhasil Diupdate');
+            ->with('success', 'Data User Berhasil Diupdate');
+    }
+
+    public function sewa()
+    {
+        return view('User.sewa');
     }
 
     /**
@@ -136,9 +142,10 @@ class UserController extends Controller
         return redirect()->route('user.index')
             ->with('success', 'Data User Berhasil DiHapus');
     }
-    public function cetak_pdf(){
-        $user = User::all();
-        $pdf = PDF::loadview('user.cetak',['user'=>$user]);
-        return $pdf->stream();
+    public function cetak_pdf()
+    {
+        // $user = User::all();
+        // $pdf = PDF::loadview('user.cetak', ['user' => $user]);
+        // return $pdf->stream();
     }
 }

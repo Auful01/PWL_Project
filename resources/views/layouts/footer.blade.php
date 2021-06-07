@@ -61,6 +61,11 @@
 	} );
 	</script>
 
+{{-- <script>
+  $('.modal').on('shown.bs.modal', function() {
+        $('#modalCreate').off('focusin.modal');
+    });
+</script> --}}
 {{-- <script type="text/javascript">
     $('.carousel').carousel({
             interval: 2000

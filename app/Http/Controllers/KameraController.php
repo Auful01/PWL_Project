@@ -7,6 +7,7 @@ use App\Models\kameraModel;
 use App\Models\Merek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
+use RealRashid\SweetAlert\Facades\Alert;
 use PDF;
 
 class KameraController extends Controller
@@ -58,22 +59,21 @@ class KameraController extends Controller
         $request->validate([
             'kode' => 'required',
             'tipe' => 'required',
-            'merek' => 'required',
+            'id_merek' => 'required',
             'harga_sewa' => 'required'
         ]);
 
-        $kamera = new kamera();
+        $kamera = new Kamera;
         $kamera->kode = $request->get('kode');
         $kamera->tipe = $request->get('tipe');
+        $kamera->id_merek = $request->get('id_merek');
         $kamera->gambar = $img_name;
         $kamera->harga_sewa = $request->get('harga_sewa');
-
-        $merek = new Merek();
-        $merek->id_merek = $request->get('merek');
-        $kamera->merek()->associate($merek);
         $kamera->save();
 
-        return redirect('kamera');
+        $msg = Alert::success('Sukses', 'Data Berhasil ditambah');
+        // return var_dump($kamera);
+        return redirect('kamera')->with('', $msg);
     }
 
     /**
@@ -114,7 +114,7 @@ class KameraController extends Controller
         $request->validate([
             'kode' => 'required',
             'tipe' => 'required',
-            'merek' => 'required',
+            'id_merek' => 'required',
             'harga_sewa' => 'required'
         ]);
 
@@ -140,8 +140,8 @@ class KameraController extends Controller
     }
     public function cetak_pdf()
     {
-        $kamera = kamera::all();
-        $pdf = PDF::loadview('cetak', ['kamera' => $kamera]);
-        return $pdf->stream();
+        // $kamera = kamera::all();
+        // // $pdf = PDF::loadview('cetak', ['kamera' => $kamera]);
+        // return $pdf->stream();
     }
 }

@@ -15,7 +15,7 @@
     <br>
     {{-- <p class="mb-5">Create an account with FlowDash</p> --}}
 
-    <form action="{{ route('kamera.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('merek.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label class="text-label" for="id_merek">id_merek</label>
@@ -47,5 +47,7 @@
             {{-- <a class="text-body text-underline" href="login.html">Have an account? Login</a> --}}
         </div>
     </form>
+
+
 </div>
 @endsection

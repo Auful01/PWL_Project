@@ -87,13 +87,13 @@
                 <li class="sidebar-menu-item">
                     <a class="sidebar-menu-button" data-toggle="collapse" href="#apps_menu">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">slideshow</i>
-                        <span class="sidebar-menu-text">Master Data</span>
+                        <span class="sidebar-menu-text">Transaksi</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
                     <ul class="sidebar-submenu collapse" id="apps_menu">
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="app-activities.html">
-                                <span class="sidebar-menu-text">User</span>
+                            <a class="sidebar-menu-button" href="{{route('sewa.index')}}">
+                                <span class="sidebar-menu-text">Penyewaan</span>
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
