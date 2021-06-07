@@ -24,7 +24,8 @@ class KameraController extends Controller
     public function index()
     {
         $kamera =  kamera::with('merek')->get();
-        return view('kamera', ['kamera' => $kamera]);
+        $merek = Merek::all();
+        return view('kamera', ['kamera' => $kamera, 'merek' => $merek]);
     }
 
     /**
@@ -35,7 +36,7 @@ class KameraController extends Controller
     public function create()
     {
         $merek = Merek::all();
-        return view('createkamera', compact('merek'));
+        return view('kamera', compact('merek'));
     }
 
     /**
@@ -96,9 +97,9 @@ class KameraController extends Controller
     public function edit($id)
     {
         // Menampilkan detail data dengan menemukan berdasarkan nim Mahasiswa untuk diedit
-        // $kamera = kamera::find($id);
+        // $kamera = kamera::with('merek')->where('kode', $id);
         // return view('editkamera', compact('kamera'));
-        return view('editkamera');
+        return view('editKamera');
     }
 
     /**
