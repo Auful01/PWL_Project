@@ -57,6 +57,10 @@
 
 {{-- Ajax --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script> --}}
+
+{{-- Datetime Picker --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -107,4 +111,35 @@ $(document).ready(function() {
   })
 })
 </script> --}}
+
+
+<script>
+//      function checkDate() {
+//    var selectedText = document.getElementById('tanggal_pinjam').value;
+//    var selectedDate = new Date(selectedText);
+//    var now = new Date();
+//    if (selectedDate < now) {
+//     alert("Date must be in the future");
+//    }
+//     $("#tanggal").val(selectedDate);
+    $(document).ready(function() {
+
+
+        // let days =
+        // let dayStart = start.getTime();
+
+        $('#tanggal_kembali').on('change', function() {
+            let start = new Date($('#tanggal_pinjam').val());
+            let end = new Date($('#tanggal_kembali').val());
+            let days = (end - start) / (1000 * 60 * 60 * 24);
+
+            let harga = $('#harga_sewa').val();
+            let kntl = days * harga;
+
+            $('#harga_akhir').val(kntl);
+        });
+
+    });
+
+</script>
 

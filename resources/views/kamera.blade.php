@@ -248,7 +248,7 @@
                 <div class="form-group">
                     <label class="text-label" for="deskripsi">Deskripsi</label>
                     <div class="input-group input-group-merge">
-                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" class="form-control form-control-prepended" value="{{$k->deskripsi}}"></textarea>
+                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" class="form-control form-control-prepended" >{{$k->deskripsi}}</textarea>
                         <div class="input-group-prepend">
                             <div class="input-group-text">
                                 <span class="far fa-user"></span>

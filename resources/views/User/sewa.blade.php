@@ -9,7 +9,7 @@
                 <img src="{{'storage/'. $k->gambar }}" class="card-img-top" alt="..." width="150px">
                 <div class="card-body">
                 <h5 class="card-title">{{$k->merek->nama_merek}} {{$k->tipe}}</h5>
-                <p class="card-text">{{$k->deskripsi}} <br> <b>@currency($k->harga_sewa)</b>/Hari</p>
+                <p class="card-text"><b>Deskripsi</b> <br>{{$k->deskripsi}} <br> <b>@currency($k->harga_sewa)</b>/Hari</p>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sewaModal{{$k->kode}}">
                     Sewa Sekarang
                   </button>
@@ -45,7 +45,20 @@
                     <div class="col-md-6 ml-auto">
                         <div class="card card-body">
                             <h5 class="card-title">{{$k->merek->nama_merek}} {{$k->tipe}}</h5>
-                            <p class="card-text">{{$k->deskripsi}} <br> <b>@currency($k->harga_sewa)</b>/Hari</p>
+                            <p class="card-text"><b>Deskripsi</b> <br>{{$k->deskripsi}} <br> <b>@currency($k->harga_sewa)</b>/Hari</p>
+                                <input type="hidden" id="harga_sewa" value="{{ $k->harga_sewa }}">
+                                <label for="tanggal_pinjam">Tanggal Pinjam</label>
+                                <input type="date" name="tanggal_pinjam" id="tanggal_pinjam">
+                                {{-- <input id="datepicker" type="datepicker" name="date" placeholder="Date" /> --}}
+                                <label for="tanggal_kembali">Tanggal Kembali</label>
+                                <input type="date" name="tanggal_kembali" id="tanggal_kembali">
+                                {{-- <input type="text" name="tanggal" id="harga_akhir"> --}}
+                                <br>
+                                <label for="harga_akhir">Harga : </label>
+                                <input type="text" name="tanggal" id="harga_akhir" style="border: none">
+                                {{-- <div class="total-bayar">
+                                    <span id="tanggal_coba"></span>
+                                </div> --}}
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sewaModal{{$k->kode}}">
                                 Sewa Sekarang
                             </button>
