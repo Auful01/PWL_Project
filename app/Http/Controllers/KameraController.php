@@ -7,6 +7,7 @@ use App\Models\kameraModel;
 use App\Models\Merek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use PDF;
 
@@ -60,6 +61,7 @@ class KameraController extends Controller
         $request->validate([
             'kode' => 'required',
             'tipe' => 'required',
+            'deskripsi' => 'required',
             'id_merek' => 'required',
             'harga_sewa' => 'required'
         ]);
@@ -68,6 +70,7 @@ class KameraController extends Controller
         $kamera->kode = $request->get('kode');
         $kamera->tipe = $request->get('tipe');
         $kamera->id_merek = $request->get('id_merek');
+        $kamera->deskripsi = $request->get('deskripsi');
         $kamera->gambar = $img_name;
         $kamera->harga_sewa = $request->get('harga_sewa');
         $kamera->save();
@@ -111,19 +114,35 @@ class KameraController extends Controller
      */
     public function update(Request $request, $kode)
     {
+        // if ($request->file('gambar')) {
+        //     $img_name = $request->file('gambar')->store('gambar', 'public');
+        // }
         // Melakukan validasi data
         $request->validate([
             'kode' => 'required',
             'tipe' => 'required',
             'id_merek' => 'required',
+            'deskripsi' => 'required',
             'harga_sewa' => 'required'
         ]);
 
         // Funsgi eloquent untuk mengupdate data inputan kita
-        kamera::find($kode)->update($request->all());
+        // kamera::find($kode)->update($request->all());
+        $kamera = Kamera::with('merek')->where('kode', $kode)->first();
+        $kamera->kode = $request->get('kode');
+        $kamera->tipe = $request->get('tipe');
+        $kamera->id_merek = $request->get('id_merek');
+        $kamera->deskripsi = $request->get('deskripsi');
+        if ($kamera->gambar && file_exists(storage_path('app/public/gambar' . $kamera->gambar))) {
+            Storage::delete('public/gambar' . $kamera->foto);
+        }
+        $img_name = $request->file('gambar')->store('gambar', 'public');
+        $kamera->gambar = $img_name;
+        $kamera->harga_sewa = $request->get('harga_sewa');
+        $kamera->save();
 
         // Jika data berhasil diupdata, akan kembali ke halaman utama
-        return redirect()->route('kamera')
+        return redirect()->route('kamera.index')
             ->with('success', 'Data Barang Berhasil Diupdate');
     }
 
@@ -141,8 +160,8 @@ class KameraController extends Controller
     }
     public function cetak_pdf()
     {
-        // $kamera = kamera::all();
-        // // $pdf = PDF::loadview('cetak', ['kamera' => $kamera]);
-        // return $pdf->stream();
+        $kamera = kamera::all();
+        $pdf = PDF::loadview('cetak', ['kamera' => $kamera]);
+        return $pdf->stream();
     }
 }

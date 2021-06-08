@@ -55,6 +55,9 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
+{{-- Ajax --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#tableku').DataTable();
@@ -62,12 +65,46 @@
 	</script>
 
 {{-- <script>
-  $('.modal').on('shown.bs.modal', function() {
-        $('#modalCreate').off('focusin.modal');
-    });
+$(document).ready(function() {
+  /**
+   * for showing edit item popup
+   */
+
+  $(document).on('click', "#editKameraModal", function() {
+    $(this).addClass('edit-item-trigger-clicked'); //useful for identifying which trigger was clicked and consequently grab data from the correct row and not the wrong one.
+
+    var options = {
+      'backdrop': 'static'
+    };
+    $('#editKameraModal').modal(options)
+  })
+
+  // on modal show
+  $('#editKameraModal').on('show.bs.modal', function() {
+    var el = $(".edit-item-trigger-clicked"); // See how its usefull right here?
+    var row = el.closest(".data-row");
+
+    // get the data
+    var kode = el.data('kode');
+    var merek = row.children("#id_merek").text();
+    var tipe = row.children("#tipe").text();
+    var gambar = row.children("#gambar").text();
+    var harga_sewa = row.children("#harga_sewa").text();
+
+    // fill the data in the input fields
+    $("#kode").val(kode);
+    $("#id_merek").val(merek);
+    $("#tipe").val(tipe);
+    $("#gambar").val(gambar);
+    $("#harga_sewa").val(harga_sewa);
+
+  })
+
+  // on modal hide
+  $('#editKameraModal').on('hide.bs.modal', function() {
+    $('.edit-item-trigger-clicked').removeClass('edit-item-trigger-clicked')
+    $("#edit-form").trigger("reset");
+  })
+})
 </script> --}}
-{{-- <script type="text/javascript">
-    $('.carousel').carousel({
-            interval: 2000
-        })
-</script> --}}
+
