@@ -1,3 +1,8 @@
+@extends('layouts.main')
+
+@section('content')
+
+
 <style>
     table {
 border: 1px solid rgb(0, 0, 0);
@@ -37,15 +42,15 @@ text-transform: uppercase;
                 <th>Nama Barang</th>
                 <th>Kategori</th>
                 <th>GAMBAR</th>
-                <th>Jumlah</th>
-                <th>Harga Barang(RP)</th>
+                {{-- <th>Jumlah</th> --}}
+                {{-- <th>Harga Barang(RP)</th> --}}
                 <th>Harga Sewa(RP)</th>
 
             </tr>
             @foreach ($kamera as $b)
             <tr>
-                <td>{{$b->id}}</td>
-                <td>{{$b->merek}}</td>
+                <td>{{$b->kode}}</td>
+                <td>{{$b->merek->nama_merek}}</td>
                 <td>{{$b->tipe}}</td>
                 <td><img src="{{ 'storage/'. $b->gambar }}" width="100px"></td>
                 {{-- <td>{{$b->jumlah}}</td>
@@ -56,3 +61,5 @@ text-transform: uppercase;
         </table>
     </div>
 </div>
+
+@endsection

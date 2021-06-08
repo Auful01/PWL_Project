@@ -85,12 +85,12 @@
 
 
                 <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button" data-toggle="collapse" href="#apps_menu">
+                    <a class="sidebar-menu-button" data-toggle="collapse" href="#menu_user">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">slideshow</i>
                         <span class="sidebar-menu-text">Transaksi</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
-                    <ul class="sidebar-submenu collapse" id="apps_menu">
+                    <ul class="sidebar-submenu collapse" id="menu_user">
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{route('sewa.index')}}">
                                 <span class="sidebar-menu-text">Penyewaan</span>
@@ -106,13 +106,13 @@
                 </li>
 
                 <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button" data-toggle="collapse" href="#menu">
+                    <a class="sidebar-menu-button" data-toggle="collapse" href="#menu_user2">
                         <i
                             class="sidebar-menu-icon sidebar-menu-icon--left material-icons">description</i>
                         <span class="sidebar-menu-text">Data Barang</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
-                    <ul class="sidebar-submenu collapse" id="menu">
+                    <ul class="sidebar-submenu collapse" id="menu_user2">
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{route('kamera.index')}}">
                                 <span class="sidebar-menu-text">Kamera</span>
@@ -128,13 +128,13 @@
 
 
                 <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button" data-toggle="collapse" href="#layouts_menu">
+                    <a class="sidebar-menu-button" data-toggle="collapse" href="#layouts_menu2">
                         <i
                             class="sidebar-menu-icon sidebar-menu-icon--left material-icons">view_compact</i>
                         <span class="sidebar-menu-text">Transaksi</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
-                    <ul class="sidebar-submenu collapse" id="layouts_menu">
+                    <ul class="sidebar-submenu collapse" id="layouts_menu2">
                         <li class="sidebar-menu-item active">
                             <a class="sidebar-menu-button" href="{{route('peminjaman.index')}}">
                                 <span class="sidebar-menu-text">Peminjaman</span>
