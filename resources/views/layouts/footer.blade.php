@@ -68,61 +68,44 @@
 	} );
 	</script>
 
-{{-- <script>
-$(document).ready(function() {
-  /**
-   * for showing edit item popup
-   */
-
-  $(document).on('click', "#editKameraModal", function() {
-    $(this).addClass('edit-item-trigger-clicked'); //useful for identifying which trigger was clicked and consequently grab data from the correct row and not the wrong one.
-
-    var options = {
-      'backdrop': 'static'
-    };
-    $('#editKameraModal').modal(options)
-  })
-
-  // on modal show
-  $('#editKameraModal').on('show.bs.modal', function() {
-    var el = $(".edit-item-trigger-clicked"); // See how its usefull right here?
-    var row = el.closest(".data-row");
-
-    // get the data
-    var kode = el.data('kode');
-    var merek = row.children("#id_merek").text();
-    var tipe = row.children("#tipe").text();
-    var gambar = row.children("#gambar").text();
-    var harga_sewa = row.children("#harga_sewa").text();
-
-    // fill the data in the input fields
-    $("#kode").val(kode);
-    $("#id_merek").val(merek);
-    $("#tipe").val(tipe);
-    $("#gambar").val(gambar);
-    $("#harga_sewa").val(harga_sewa);
-
-  })
-
-  // on modal hide
-  $('#editKameraModal').on('hide.bs.modal', function() {
-    $('.edit-item-trigger-clicked').removeClass('edit-item-trigger-clicked')
-    $("#edit-form").trigger("reset");
-  })
-})
-</script> --}}
-
 
 <script>
-//      function checkDate() {
-//    var selectedText = document.getElementById('tanggal_pinjam').value;
-//    var selectedDate = new Date(selectedText);
-//    var now = new Date();
-//    if (selectedDate < now) {
-//     alert("Date must be in the future");
-//    }
-//     $("#tanggal").val(selectedDate);
+
     $(document).ready(function() {
+        $('.btn-modal-editKamera').on('click', function() {
+            let kd = $(this).data('kode');
+            let tp = $(this).data('tipe');
+            let mrk = $(this).data('merek');
+            let gbr = $(this).data('gambar');
+            let desc = $(this).data('deskripsi');
+            let hrg = $(this).data('harga');
+            let url = $(this).data('url');
+            $('.kode').val(kd);
+            $('.tipe').val(tp);
+            $('.merek').val(mrk);
+            $('.gambar').attr('src', gbr);
+            $('.url').attr('action', url);
+            $('.deskripsi').val(desc);
+            $('.harga_sewa').val(hrg);
+
+            $.ajax({
+                type: "GET",
+                url: '/merek-kamera',
+                success:function(data, textStatus, jqXHR)
+                {
+                    let kntl = "";
+                    data.forEach(element => {
+                        if(element.id_merek == mrk){
+                            kntl += `<option value="${element.id_merek}" selected class="merek">${element.nama_merek}</option>`;
+                        }else{
+                            kntl += `<option value="${element.id_merek}" class="merek">${element.nama_merek}</option>`;
+                        }
+                    });
+                    $('.kntl').append(kntl);
+                }
+            });
+        });
+
 
 
         // let days =
@@ -134,9 +117,9 @@ $(document).ready(function() {
             let days = (end - start) / (1000 * 60 * 60 * 24);
 
             let harga = $('#harga_sewa').val();
-            let kntl = days * harga;
+            let total = days * harga;
 
-            $('#harga_akhir').val(kntl);
+            $('#harga_akhir').val(total);
         });
 
     });

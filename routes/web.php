@@ -26,6 +26,7 @@ Route::get('/', function () {
 });
 
 Route::resource('kamera', KameraController::class);
+Route::get('merek-kamera', [KameraController::class, 'merek_kamera']);
 Route::get('/laporan/barang', [KameraController::class, 'cetak_pdf']);
 Route::get('/dashboard', function () {
     return view('layouts.index');

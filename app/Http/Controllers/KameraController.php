@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kamera;
+use App\Models\Kamera;
 use App\Models\kameraModel;
 use App\Models\Merek;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ class KameraController extends Controller
      */
     public function index()
     {
-        $kamera =  kamera::with('merek')->get();
+        $kamera =  Kamera::with('merek')->get();
         $merek = Merek::all();
         return view('kamera', ['kamera' => $kamera, 'merek' => $merek]);
     }
@@ -163,5 +163,11 @@ class KameraController extends Controller
         $kamera = kamera::all();
         $pdf = PDF::loadview('cetak', ['kamera' => $kamera]);
         return $pdf->stream();
+    }
+
+    public function merek_kamera()
+    {
+        $merek = Merek::all();
+        return $merek;
     }
 }
