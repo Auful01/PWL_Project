@@ -16,6 +16,7 @@
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cobaModal">
                     jajal
                   </button>
+
                 </div>
             </div>
         </div>
@@ -62,6 +63,9 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sewaModal{{$k->kode}}">
                                 Sewa Sekarang
                             </button>
+                            <a class="btn btn-primary" href="{{ url('/laporan/sewa') }}">  Cetak Kwitansi </a>
+                            </td>
+                            </td>
                         </div>
                     </div>
                 </div>

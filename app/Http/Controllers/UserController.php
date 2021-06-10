@@ -144,8 +144,8 @@ class UserController extends Controller
     }
     public function cetak_pdf()
     {
-        // $user = User::all();
-        // $pdf = PDF::loadview('user.cetak', ['user' => $user]);
-        // return $pdf->stream();
+        $user = User::all();
+        $pdf = PDF::loadview('user.cetak', ['user' => $user]);
+        return $pdf->stream();
     }
 }

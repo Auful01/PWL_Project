@@ -46,3 +46,4 @@ Route::get('jajal', function () {
     return view('jajal');
 });
 Route::resource('sewa', SewaController::class);
+Route::get('/laporan/sewa', [SewaController::class, 'cetak_pdf']);
