@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kamera;
 use Illuminate\Http\Request;
+use PDF;
 
 class SewaController extends Controller
 {
@@ -82,5 +83,11 @@ class SewaController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function cetak_pdf()
+    {
+    $kamera = kamera::all();
+        $pdf = PDF::loadview('user.cetakSewa', ['kamera' => $kamera]);
+        return $pdf->stream();
     }
 }
