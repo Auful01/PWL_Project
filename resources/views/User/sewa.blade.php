@@ -10,7 +10,7 @@
                 <div class="card-body">
                 <h5 class="card-title">{{$k->merek->nama_merek}} {{$k->tipe}}</h5>
                 <p class="card-text"><b>Deskripsi</b> <br>{{$k->deskripsi}} <br> <b>@currency($k->harga_sewa)</b>/Hari</p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sewaModal{{$k->kode}}">
+                <button type="button" class="btn btn-primary btn-modal-sewa" data-toggle="modal" data-target="#sewaModal{{$k->kode}}" data-kode="{{$k->kode}}" data-tglPinjam="{{$k->tanggal_pinjam}}" data-tglKembali="{{$k->tanggal_kembali}}" >
                     Sewa Sekarang
                   </button>
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cobaModal">
@@ -37,6 +37,8 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <form action="{{ route('sewa.store') }}" method="POST">
+            @csrf
         <div class="modal-body">
             <div class="container-fluid">
                 <div class="row">
@@ -47,7 +49,8 @@
                         <div class="card card-body">
                             <h5 class="card-title">{{$k->merek->nama_merek}} {{$k->tipe}}</h5>
                             <p class="card-text"><b>Deskripsi</b> <br>{{$k->deskripsi}} <br> <b>@currency($k->harga_sewa)</b>/Hari</p>
-                                <input type="hidden" id="harga_sewa" value="{{ $k->harga_sewa }}">
+                                <input type="hidden" name="id_kamera" id="kode" value="{{$k->kode}}">
+                                <input type="hidden" name="" id="harga_sewa" value="{{ $k->harga_sewa }}">
                                 <label for="tanggal_pinjam">Tanggal Pinjam</label>
                                 <input type="date" name="tanggal_pinjam" id="tanggal_pinjam">
                                 {{-- <input id="datepicker" type="datepicker" name="date" placeholder="Date" /> --}}
@@ -73,12 +76,15 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
+    </form>
       </div>
     </div>
   </div>
 @endforeach
+
+
 
 @endsection
 

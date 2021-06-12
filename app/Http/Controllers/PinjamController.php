@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peminjaman;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
 
-class PeminjamanController extends Controller
+class PinjamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +14,8 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $pinjam = Peminjaman::with('kamera')->with('user')->get();
-        return view('User.dataPinjamUser', ['pinjam' => $pinjam]);
-    }
-
-    public function index_riwayat()
-    {
-        $pinjam = Peminjaman::with('kamera')->with('user')->get();
-        return view('User.dataPinjamUser', ['pinjam' => $pinjam]);
+        $pinjam = Peminjaman::all();
+        return view('User.dataPinjamUser', compact('pinjam'));
     }
 
     /**
@@ -43,25 +36,7 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        // $id =;
-
-        // $request->validate([
-        //     // 'kode_pinjam' => 'required',
-        //     'id_kamera' => 'required',
-        //     'tanggal_pinjam' => 'required',
-        //     'tanggal_kembali' => 'required',
-        // ]);
-
-        // $pinjam = new Peminjaman;
-        // // $pinjam->kode_pinjam =  IdGenerator::generate(['table' => 'peminjaman', 'length' => 8, 'prefix' => 'Pjm-']);
-        // $pinjam->id_kamera = $request->get('kode');
-        // $pinjam->tanggal_pinjam = $request->get('tanggal_pinjam');
-        // $pinjam->kode_pinjam = $request->get('kode_pinjam');
-        // $pinjam->save();
-
-        // return var_dump($pinjam);
-        // return redirect()->view('User.sewa')
-        //     ->with('success', 'Data Barang Berhasil Diupdate');
+        //
     }
 
     /**

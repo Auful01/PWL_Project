@@ -5,6 +5,8 @@ use App\Http\Controllers\KameraController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PinjamController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SewaController;
 use App\Models\Peminjaman;
 use App\Http\Controllers\UserController;
@@ -21,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,8 +35,12 @@ Route::get('merek-kamera', [KameraController::class, 'merek_kamera']);
 Route::get('/laporan/barang', [KameraController::class, 'cetak_pdf']);
 Route::get('/dashboard', function () {
     return view('layouts.index');
-});
+})->name('dashboard');
 Route::resource('merek', MerekController::class);
+
+Route::get('/masuk', function () {
+    return view('login');
+})->name('masuk');
 
 Route::resource('anggota', anggotaController::class);
 
@@ -47,4 +56,11 @@ Route::get('jajal', function () {
     return view('jajal');
 });
 Route::resource('sewa', SewaController::class);
+
 Route::get('/laporan/sewa', [SewaController::class, 'cetak_pdf']);
+Route::get('/riwayat-pinjam', [PeminjamanController::class, 'index_riwayat'])->name('riwayat');
+
+Route::resource('pinjam', PinjamController::class);
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

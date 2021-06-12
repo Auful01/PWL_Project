@@ -11,9 +11,12 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "haruncpi/laravel-id-generator": "^1.0",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
-        "realrashid/sweet-alert": "^3.2"
+        "laravel/ui": "^3.3",
+        "realrashid/sweet-alert": "^3.2",
+        "symfony/error-handler": "^5.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

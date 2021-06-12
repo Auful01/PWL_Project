@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kamera;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -37,7 +38,17 @@ class SewaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_pinjam' => 'required',
+            'id_kamera' => 'required',
+            'tanggal_pinjam' => 'required',
+            'tanggal_kembali' => 'required',
+        ]);
+
+
+        Peminjaman::create($request->all());
+
+        return redirect()->route('sewa.index');
     }
 
     /**
@@ -86,7 +97,7 @@ class SewaController extends Controller
     }
     public function cetak_pdf()
     {
-    $kamera = kamera::all();
+        $kamera = kamera::all();
         $pdf = PDF::loadview('user.cetakSewa', ['kamera' => $kamera]);
         return $pdf->stream();
     }

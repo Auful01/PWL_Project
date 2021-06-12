@@ -131,12 +131,12 @@
                     <a class="sidebar-menu-button" data-toggle="collapse" href="#layouts_menu2">
                         <i
                             class="sidebar-menu-icon sidebar-menu-icon--left material-icons">view_compact</i>
-                        <span class="sidebar-menu-text">Transaksi</span>
+                        <span class="sidebar-menu-text">Riwayat Transaksi</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
                     <ul class="sidebar-submenu collapse" id="layouts_menu2">
                         <li class="sidebar-menu-item active">
-                            <a class="sidebar-menu-button" href="{{route('peminjaman.index')}}">
+                            <a class="sidebar-menu-button" href="{{route('pinjam.index')}}">
                                 <span class="sidebar-menu-text">Peminjaman</span>
                             </a>
                         </li>
