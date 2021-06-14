@@ -32,7 +32,8 @@
             <td>{{ $data->name }}</td>
             <td>{{ $data->email}}</td>
             <td>{{ $data->username }}</td>
-                <td><form action="{{ route('user.destroy',$data->id) }}" method="POST">
+                <td><a class="btn btn-primary" href="{{ url('/laporan/sewa') }}">  Cetak Kwitansi </a>
+                    <form action="{{ route('user.destroy',$data->id) }}" method="POST">
                     <a class="btn btn-primary" href="{{ route('user.edit',$data->id) }}">Edit</a>
                          @csrf
                         @method('DELETE')

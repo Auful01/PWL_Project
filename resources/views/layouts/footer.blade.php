@@ -106,6 +106,26 @@
             });
         });
 
+        $('.btn-modal-sewa').on('click',function(){
+            let kd = $(this).data('kode');
+            let tp = $(this).data('tipe');
+            let mrk = $(this).data('merek');
+            let gbr = $(this).data('gambar');
+            let desc = $(this).data('desc');
+            let hrg = $(this).data('harga');
+            // let tglPjm = $(this).data('tglPinjam')
+            // let tglKbl = $(this).data('tglKembali')
+            // let url = $(this).data('url');
+            $('.kode').val(kd);
+            $('.tipe').val(tp);
+            $('.merek').val(mrk);
+            $('.gambar').attr('src', gbr);
+            // $('.url').attr('action', url);
+            $('.deskripsi').val(desc);
+            $('.harga_sewa').val(hrg);
+            // $('.tanggal_pinjam').val(tglPjm);
+            // $('.tanggal_kembali').val(tglKbl)
+        })
 
 
         // let days =
@@ -116,9 +136,12 @@
             let end = new Date($('#tanggal_kembali').val());
             let days = (end - start) / (1000 * 60 * 60 * 24);
 
-            let harga = $('#harga_sewa').val();
+            let harga = $('.harga_sewa').val();
             let total = days * harga;
 
+            console.log(days);
+            console.log(harga);
+            console.log(total);
             $('#harga_akhir').val(total);
         });
 

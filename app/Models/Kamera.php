@@ -28,4 +28,8 @@ class Kamera extends Model
     {
         return $this->belongsTo(Merek::class, 'id_merek');
     }
+
+    // public function pinjam(){
+    //     return $this->hasMany(Peminjaman::class, 'kode_pinjam')
+    // }
 }

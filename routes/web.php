@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SewaController;
 use App\Models\Peminjaman;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPeminjamanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,7 @@ Auth::routes();
 // });
 
 
-Route::get('merek-kamera', [KameraController::class, 'merek_kamera']);
+// Route::get('merek-kamera', [KameraController::class, 'merek_kamera']);
 
 Route::get('/dashboard', function () {
     return view('layouts.index');
@@ -62,5 +63,5 @@ Route::middleware(['cekRole:0'])->group(function () {
     Route::resource('sewa', SewaController::class);
     Route::get('/laporan/sewa', [SewaController::class, 'cetak_pdf']);
     Route::get('/riwayat-pinjam', [PeminjamanController::class, 'index_riwayat'])->name('riwayat');
-    Route::resource('pinjam', PinjamController::class);
+    Route::resource('pinjam', UserPeminjamanController::class);
 });

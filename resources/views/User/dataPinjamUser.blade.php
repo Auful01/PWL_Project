@@ -21,8 +21,10 @@
             <th>Kode Pinjam</th>
             <th>Peminjam</th>
             <th>Tipe</th>
+            <th>Gambar</th>
             <th>Tanggal Pinjam</th>
             <th>Tanggal Kembali</th>
+            <th>Harga Sewa</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -30,13 +32,15 @@
         @foreach ($pinjam as $b)
             <tr>
                 <td>{{$b->kode_pinjam}}</td>
-                <td>{{$b->id_user}}</td>
-                <td>{{$b->id_kamera}}</td>
+                <td>{{$b->user->name}}</td>
+                <td>{{$b->kamera->tipe}}</td>
+                <td><img src="{{'storage/'. $b->kamera->gambar}}" alt="" width="150px"></td>
                 <td>{{$b->tanggal_pinjam}}</td>
                 <td>{{$b->tanggal_kembali}}</td>
-
-                <td><form action="{{ route('merek.destroy',$b->id_merek) }}" method="POST">
-                    <a class="btn btn-primary" href="{{ route('merek.edit',$b->id_merek) }}">Edit</a>
+                {{-- <td>{{date_diff($b->tanggal_pinjam, $b->tanggal_kembali)}}</td> --}}
+                <td>{{$b->harga_sewa}}</td>
+                <td><form action="{{ route('sewa.destroy',$b->kode_pinjam) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('sewa.edit',$b->kode_pinjam) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>

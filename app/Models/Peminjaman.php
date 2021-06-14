@@ -18,6 +18,17 @@ class Peminjaman extends Model
         'id_kamera',
         'id_user',
         'tanggal_pinjam',
-        'tanggal_kembali'
+        'tanggal_kembali',
+        'harga_sewa',
     ];
+
+    public function kamera()
+    {
+        return $this->belongsTo(Kamera::class, 'id_kamera');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

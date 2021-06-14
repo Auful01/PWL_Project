@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kamera;
-use App\Models\Peminjaman;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
-use PDF;
+use App\Models\Peminjaman;
 
-class SewaController extends Controller
+class UserPeminjamanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,8 @@ class SewaController extends Controller
      */
     public function index()
     {
-        $kamera =  Kamera::with('merek')->get();
-        return view('User.sewa', ['kamera' => $kamera]);
+        $pinjam = Peminjaman::with('kamera')->with('user')->get();
+        return view('User.dataPinjamUser', ['pinjam' => $pinjam]);
     }
 
     /**
@@ -39,18 +36,7 @@ class SewaController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'kode_pinjam' => 'required',
-        //     'id_kamera' => 'required',
-        //     'id_user' => 'required',
-        //     'tanggal_pinjam' => 'required',
-        //     'tanggal_kembali' => 'required',
-        // ]);
-
-        // $kode = IdGenerator::generate(['table' => 'peminjaman', 'length' => 8, 'prefix' => 'Pjm-']);
-        $peminjaman = Peminjaman::create($request->all());
-
-        return $peminjaman;
+        //
     }
 
     /**
@@ -96,11 +82,5 @@ class SewaController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function cetak_pdf()
-    {
-        $kamera = kamera::all();
-        $pdf = PDF::loadview('user.cetakSewa', ['kamera' => $kamera]);
-        return $pdf->stream();
     }
 }
