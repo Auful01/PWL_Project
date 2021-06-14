@@ -26,17 +26,16 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('layouts.index');
+// });
 
-Route::resource('kamera', KameraController::class);
+
 Route::get('merek-kamera', [KameraController::class, 'merek_kamera']);
-Route::get('/laporan/barang', [KameraController::class, 'cetak_pdf']);
+
 Route::get('/dashboard', function () {
     return view('layouts.index');
 })->name('dashboard');
-Route::resource('merek', MerekController::class);
 
 Route::get('/masuk', function () {
     return view('login');
@@ -44,23 +43,24 @@ Route::get('/masuk', function () {
 
 Route::resource('anggota', anggotaController::class);
 
-Route::get('/laporan/anggota', [anggotaController::class, 'cetak_pdf']);
-Route::resource('peminjaman', PeminjamanController::class);
-
-Route::resource('/user', UserController::class);
-Route::get('/laporan/user', [UserController::class, 'cetak_pdf']);
-Route::prefix('users')->group(function () {
-    Route::get('/sewa', [UserController::class, 'sewa'])->name('sewa');
-});
-Route::get('jajal', function () {
-    return view('jajal');
-});
-Route::resource('sewa', SewaController::class);
-
-Route::get('/laporan/sewa', [SewaController::class, 'cetak_pdf']);
-Route::get('/riwayat-pinjam', [PeminjamanController::class, 'index_riwayat'])->name('riwayat');
-
-Route::resource('pinjam', PinjamController::class);
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Route Admin
+Route::middleware(['cekRole:1'])->group(function () {
+    Route::resource('kamera', KameraController::class);
+    Route::get('/laporan/barang', [KameraController::class, 'cetak_pdf']);
+    Route::resource('peminjaman', PeminjamanController::class);
+    Route::resource('merek', MerekController::class);
+    Route::resource('/user', UserController::class);
+});
+
+Route::middleware(['cekRole:0'])->group(function () {
+    Route::get('/laporan/anggota', [anggotaController::class, 'cetak_pdf']);
+    Route::get('/laporan/user', [UserController::class, 'cetak_pdf']);
+    Route::resource('sewa', SewaController::class);
+    Route::get('/laporan/sewa', [SewaController::class, 'cetak_pdf']);
+    Route::get('/riwayat-pinjam', [PeminjamanController::class, 'index_riwayat'])->name('riwayat');
+    Route::resource('pinjam', PinjamController::class);
+});

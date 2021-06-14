@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnPeminjaman extends Migration
+class AddRolesRelasiUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddColumnPeminjaman extends Migration
      */
     public function up()
     {
-        Schema::table('peminjaman', function (Blueprint $table) {
-            $table->string('gambar')->after('');
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('role')->after('username')->default(0);
+            // $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
@@ -25,6 +26,8 @@ class AddColumnPeminjaman extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
+        });
     }
 }
