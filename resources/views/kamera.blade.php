@@ -267,7 +267,7 @@
             <div class="modal-footer form-group text-center">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-              <button class="btn btn-primary mb-2" type="submit">Tambah Barang</button><br>
+              <button class="btn btn-primary mb-2" type="submit">Edit Barang</button><br>
             </div>
         </form>
           </div>
