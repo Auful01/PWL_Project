@@ -33,13 +33,15 @@ text-transform: uppercase;
          </div>
     <div class="col-12">
         <table class="table table-bordered">
-            <tr> <th>Nama</th>
+            <tr>
+                {{-- <th>#</th> --}}
+                <th>Nama</th>
                 <th>username</th>
                 <th>E-Mail Address</th>
             </tr>
             @foreach ($user as $us => $data)
             <tr>
-                <td class="table-plus">{{ $us + $user->firstitem() }}</td>
+                {{-- <td class="table-plus">{{ $us + $user->firstitem() }}</td> --}}
                 <td>{{ $data->name }}</td>
                 <td>{{ $data->email}}</td>
                 <td>{{ $data->username }}</td>

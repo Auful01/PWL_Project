@@ -42,6 +42,9 @@ Route::get('/masuk', function () {
     return view('login');
 })->name('masuk');
 
+Route::get('/daftar', function () {
+    return view('register');
+})->name('daftar');
 Route::resource('anggota', anggotaController::class);
 
 
@@ -55,11 +58,11 @@ Route::middleware(['cekRole:1'])->group(function () {
     Route::resource('peminjaman', PeminjamanController::class);
     Route::resource('merek', MerekController::class);
     Route::resource('/user', UserController::class);
+    Route::get('/laporan/user', [UserController::class, 'cetak_pdf']);
 });
 
 Route::middleware(['cekRole:0'])->group(function () {
     Route::get('/laporan/anggota', [anggotaController::class, 'cetak_pdf']);
-    Route::get('/laporan/user', [UserController::class, 'cetak_pdf']);
     Route::resource('sewa', SewaController::class);
     Route::get('/laporan/sewa', [SewaController::class, 'cetak_pdf']);
     Route::get('/riwayat-pinjam', [PeminjamanController::class, 'index_riwayat'])->name('riwayat');
