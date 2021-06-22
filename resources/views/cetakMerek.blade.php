@@ -29,24 +29,19 @@ text-transform: uppercase;
 </style>
 <div class="row">
     <div class="col-12 text-center">
-        <center><h3><strong>Data Anggota</strong></h3><br />
+        <center><h3><strong>Data Merek</strong></h3><br />
          </div>
     <div class="col-12">
         <table class="table table-bordered">
-            <tr><th>Kode</th>
-                <th>Nama Pelanggan</th>
-                <th>No Telepon</th>
-                <th>Alamat</th>
-                <th>Pekerjaan</th>
-
+            <tr> <th>ID Merek</th>
+                <th>Merek</th>
             </tr>
-            @foreach ($anggota as $a)
-            <tr>
-                <td>{{$a->kode}}</td>
-                <td>{{$a->nama_pelanggan}}</td>
-                <td>{{$a->no_telepon}}</td>
-                <td>{{$a->alamat}}</td>
-                <td>{{$a->pekerjaan}}</td>
+        </thead>
+        <tbody>
+            @foreach ($merek as $b)
+                <tr>
+                    <td>{{$b->id_merek}}</td>
+                    <td>{{$b->nama_merek}}</td>
                 </tr>
             @endforeach
         </table>

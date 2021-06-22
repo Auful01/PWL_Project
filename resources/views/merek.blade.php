@@ -11,7 +11,7 @@
         Tambah barang
       </button>
 
-    <a class="btn btn-primary" href="{{ url('/laporan/barang') }}">  Download Data </a>
+    <a class="btn btn-primary" href="{{ url('/laporan/merek') }}">  Download Data </a>
 
     <br>
     <br>

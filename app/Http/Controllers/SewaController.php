@@ -74,9 +74,10 @@ class SewaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kode)
     {
-        //
+        $kamera = anggota::find($kode);
+        return view('editPinjam', compact('pinjam'));
     }
 
     /**
@@ -97,9 +98,9 @@ class SewaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode)
     {
-        //
+
     }
     public function cetak_pdf()
     {

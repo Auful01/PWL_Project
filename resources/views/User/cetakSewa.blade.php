@@ -31,33 +31,7 @@ text-transform: uppercase;
 }
 </style>
 <div class="row">
-    {{-- <div class="col-12 text-center">
-        <center><h3><strong>Kwitansi Pemesanan</strong></h3><br />
-         </div>
-    <div class="col-12">
-        <table class="table table-bordered">
-            <tr><th>Nama Kamera</th>
-                <th>Gambar</th>
-                <th>Deskripsi</th>
-                <th>Tanggal Pinjam</th>
-                <th>Tanggal Kembali</th>
-                <th>Harga</th>
 
-            @foreach ($pinjam as $p)
-                @if (Auth::user()->name == $pinjam->user->id)
-
-                <tr>
-                    <td>{{$p->merek->nama_merek}} {{$p->tipe}}</td>
-                    <td><img src="{{ 'storage/'. $p->gambar }}" width="100px"></td>
-                    <td>{{$p->deskripsi}}</td>
-                    <td>{{date('d/m/y', strtotime($p->tanggal_pinjam))}}</td>
-                    <td>{{date('d/m/y', strtotime($p->tanggal_kembali))}}</td>
-                    <td>{{$p->harga_akhir}}</td>
-                    </tr>
-
-                @endif
-            @endforeach
-        </table>
     </div> --}}
     <table id="tableku" class="table table-striped table-bordered dt-responsive nowrap">
         <thead>
