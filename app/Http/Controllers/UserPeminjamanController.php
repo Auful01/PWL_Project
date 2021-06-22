@@ -18,6 +18,11 @@ class UserPeminjamanController extends Controller
         return view('User.dataPinjamUser', ['pinjam' => $pinjam]);
     }
 
+    public function indexLensa()
+    {
+        $pinjam = Peminjaman::with('lensa')->with('user')->get();
+        return view('User.dataPinjamUserLensa', ['pinjam' => $pinjam]);
+    }
     /**
      * Show the form for creating a new resource.
      *

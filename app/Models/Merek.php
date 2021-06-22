@@ -14,11 +14,16 @@ class Merek extends Model
 
     protected $fillable = [
         'id_merek',
-        'merek'
+        'nama_merek'
     ];
 
     public function kamera()
     {
         return $this->hasMany(Kamera::class, 'kode');
+    }
+
+    public function lensa()
+    {
+        return $this->hasMany(Lensa::class, 'kode');
     }
 }

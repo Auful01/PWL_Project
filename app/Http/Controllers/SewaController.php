@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kamera;
+use App\Models\Lensa;
 use App\Models\Peminjaman;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
 use PDF;
+use PhpParser\Node\Scalar\LNumber;
 
 class SewaController extends Controller
 {
@@ -19,6 +21,12 @@ class SewaController extends Controller
     {
         $kamera =  Kamera::with('merek')->get();
         return view('User.sewa', ['kamera' => $kamera]);
+    }
+
+    public function indexLensa()
+    {
+        $lensa = Lensa::with('merek')->get();
+        return view('User.sewaLensa', ['lensa' => $lensa]);
     }
 
     /**
@@ -39,20 +47,15 @@ class SewaController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'kode_pinjam' => 'required',
-        //     'id_kamera' => 'required',
-        //     'id_user' => 'required',
-        //     'tanggal_pinjam' => 'required',
-        //     'tanggal_kembali' => 'required',
-        // ]);
 
-        // $kode = IdGenerator::generate(['table' => 'peminjaman', 'length' => 8, 'prefix' => 'Pjm-']);
-        $peminjaman = Peminjaman::create($request->all());
+        Peminjaman::create($request->all());
 
-        return $peminjaman;
+        return redirect('sewa');
     }
 
+    public function storeLensa(Request $request)
+    {
+    }
     /**
      * Display the specified resource.
      *

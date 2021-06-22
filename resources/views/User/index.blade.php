@@ -22,17 +22,24 @@
             <th>Nama</th>
             <th>username</th>
             <th>E-Mail Address</th>
+            <th>Level</th>
             <th> Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($user as $us => $data)
         <tr>
-            <td class="table-plus">{{ $us + $user->firstitem() }}</td>
+            <td class="table-plus">{{ $data->id }}</td>
             <td>{{ $data->name }}</td>
-            <td>{{ $data->email}}</td>
             <td>{{ $data->username }}</td>
-                <td><a class="btn btn-primary" href="{{ url('/laporan/user') }}">  Cetak Kwitansi </a>
+            <td>{{ $data->email}}</td>
+            <td>@if ($data->role == 0)
+                <?php echo 'User'; ?>
+            @else
+                <?php echo 'Admin'; ?>
+                @endif
+        </td>
+                <td>
                     <form action="{{ route('user.destroy',$data->id) }}" method="POST">
                     <a class="btn btn-primary" href="{{ route('user.edit',$data->id) }}">Edit</a>
                          @csrf

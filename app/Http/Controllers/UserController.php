@@ -20,12 +20,11 @@ class UserController extends Controller
         if ($request->has('search')) { // Pemilihan jika ingin melakukan pencarian
             $user = User::where('name', 'like', "%" . $request->search . "%")
                 ->orwhere('email', 'like', "%" . $request->search . "%")
-                ->orwhere('username', 'like', "%" . $request->search . "%")
-                ->paginate(5);
+                ->orwhere('username', 'like', "%" . $request->search . "%");
             return view('User.index', compact('user'))->with('i', (request()->input('page', 1) - 1) * 5);
         } else { // Pemilihan jika tidak melakukan pencarian
             //fungsi eloquent menampilkan data menggunakan pagination
-            $user = User::paginate(5); // MenPagination menampilkan 5 data
+            $user = User::all(); // MenPagination menampilkan 5 data
             return view('User.index', compact('user'));
         }
     }
@@ -37,14 +36,14 @@ class UserController extends Controller
      */
     public function create()
     {
-    //     return view('User.create');
-    // }
-    if(Auth::user()->level == 'user') {
-        Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-        return redirect()->to('/');
+        //     return view('User.create');
+        // }
+        if (Auth::user()->level == 'user') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/');
+        }
+        return view('user.create');
     }
-    return view('user.create');
-}
 
     /**
      * Store a newly created resource in storage.
@@ -58,6 +57,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'username' => 'required',
+            'role' => 'required',
             'email' => 'required',
             'password' => 'required',
         ]);
@@ -68,6 +68,7 @@ class UserController extends Controller
         $user->name = $request->get('name');
         $user->username = $request->get('username');
         $user->email = $request->get('email');
+        $user->role = $request->get('role');
         $user->password = bcrypt($request->get('password'));
         $user->save();
         //User::create($request->all());
@@ -100,14 +101,14 @@ class UserController extends Controller
         //menampilkan detail data dengan menemukan berdasarkan id User untuk diedit
         // $user = User::find($id);
         // return view('User.edit', compact('user'));
-        if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
+        if ((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
             Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
             return redirect()->to('/');
-    }
+        }
 
-    $data = User::findOrFail($id);
+        $data = User::findOrFail($id);
 
-    return view('user.edit', compact('data'));
+        return view('user.edit', compact('data'));
     }
 
     /**
@@ -164,5 +165,4 @@ class UserController extends Controller
         $pdf = PDF::loadview('user.cetak', ['user' => $user]);
         return $pdf->stream();
     }
-
 }

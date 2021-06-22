@@ -88,9 +88,44 @@
             $('.deskripsi').val(desc);
             $('.harga_sewa').val(hrg);
 
+
             $.ajax({
                 type: "GET",
                 url: '/merek-kamera',
+                success:function(data, textStatus, jqXHR)
+                {
+                    let kntl = "";
+                    data.forEach(element => {
+                        if(element.id_merek == mrk){
+                            kntl += `<option value="${element.id_merek}" selected class="merek">${element.nama_merek}</option>`;
+                        }else{
+                            kntl += `<option value="${element.id_merek}" class="merek">${element.nama_merek}</option>`;
+                        }
+                    });
+                    $('.kntl').append(kntl);
+                }
+            });
+        });
+
+        $('.btn-modal-editLensa').on('click', function() {
+            let kd = $(this).data('kode');
+            let tp = $(this).data('tipe');
+            let mrk = $(this).data('merek');
+            let gbr = $(this).data('gambar');
+            let desc = $(this).data('deskripsi');
+            let hrg = $(this).data('harga');
+            let url = $(this).data('url');
+            $('.kode').val(kd);
+            $('.tipe').val(tp);
+            $('.merek').val(mrk);
+            $('.gambar').attr('src', gbr);
+            $('.url').attr('action', url);
+            $('.deskripsi').val(desc);
+            $('.harga_sewa').val(hrg);
+
+            $.ajax({
+                type: "GET",
+                url: '/merek-lensa',
                 success:function(data, textStatus, jqXHR)
                 {
                     let kntl = "";

@@ -4,6 +4,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\KameraController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\LensaController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PinjamController;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +33,8 @@ Auth::routes();
 // });
 
 
-// Route::get('merek-kamera', [KameraController::class, 'merek_kamera']);
+Route::get('merek-kamera', [KameraController::class, 'merek_kamera']);
+Route::get('merek-lensa ', [LensaController::class, 'merek_lensa']);
 
 Route::get('/dashboard', function () {
     return view('layouts.index');
@@ -51,14 +53,20 @@ Route::resource('anggota', anggotaController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+
 // Route Admin
 Route::middleware(['cekRole:1'])->group(function () {
     Route::resource('kamera', KameraController::class);
+    Route::resource('lensa', LensaController::class);
     Route::get('/laporan/barang', [KameraController::class, 'cetak_pdf']);
     Route::resource('peminjaman', PeminjamanController::class);
     Route::resource('merek', MerekController::class);
     Route::resource('/user', UserController::class);
     Route::get('/laporan/user', [UserController::class, 'cetak_pdf']);
+    Route::get('/pinjamLensa', [PeminjamanController::class, 'indexPinjamLensa'])->name('lensaAdmin');
+    // Route::get('/pjmLns', function () {
+    //     return view('User.dataPinjamUserKamera');
+    // });
 });
 
 Route::middleware(['cekRole:0'])->group(function () {
@@ -67,4 +75,6 @@ Route::middleware(['cekRole:0'])->group(function () {
     Route::get('/laporan/sewa', [SewaController::class, 'cetak_pdf']);
     Route::get('/riwayat-pinjam', [PeminjamanController::class, 'index_riwayat'])->name('riwayat');
     Route::resource('pinjam', UserPeminjamanController::class);
+    Route::get('/sewaLensa', [UserPeminjamanController::class, 'indexLensa'])->name('riwayatLensa');
+    Route::get('/pinjamLensa', [SewaController::class, 'indexLensa'])->name('pinjamLensa');
 });

@@ -16,6 +16,7 @@ class Peminjaman extends Model
     protected $fillable = [
         'kode_pinjam',
         'id_kamera',
+        'id_lensa',
         'id_user',
         'tanggal_pinjam',
         'tanggal_kembali',
@@ -27,6 +28,10 @@ class Peminjaman extends Model
         return $this->belongsTo(Kamera::class, 'id_kamera');
     }
 
+    public function lensa()
+    {
+        return $this->belongsTo(Lensa::class, 'id_lensa');
+    }
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');

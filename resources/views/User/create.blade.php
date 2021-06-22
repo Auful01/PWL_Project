@@ -35,6 +35,22 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
+                            <label for="role" class="col-md-4 control-label">Level</label>
+                            <div class="col-md-6">
+                                {{-- <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required> --}}
+                                <select name="role" id="role" class="form-control">
+                                    <option value="0">User</option>
+                                    <option value="1">Admin</option>
+                                </select>
+                                @if ($errors->has('level'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('level') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
                             <div class="col-md-6">

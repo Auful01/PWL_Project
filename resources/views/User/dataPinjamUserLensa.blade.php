@@ -8,7 +8,7 @@
 @endif
 <div id="table-merek" >
     @if (Auth::user()->role == 0)
-    <a href="{{ route('sewa.index')}}" class="btn btn-primary"> Pinjam Barang </a>
+    <a href="{{ route('pinjamLensa')}}" class="btn btn-primary"> Pinjam Barang </a>
     @endif
     <a class="btn btn-primary" href="{{ url('/laporan/barang') }}">  Download Data </a>
 
@@ -34,19 +34,19 @@
     </thead>
     <tbody>
         @foreach ($pinjam as $b)
-            @if (Auth::user()->role == 1 ||Auth::user()->name == $b->user->name )
+            @if (Auth::user()->role == 1 ||Auth::user()->name == $b->user->name && $b->id_lensa != 0 )
             <tr>
                 <td>{{$b->kode_pinjam}}</td>
                 <td>{{$b->user->name}}</td>
                 {{-- <td>{{$b->lensa->tipe}}</td> --}}
-                <td>{{$b->kamera->tipe}}</td>
-                <td><img src="{{'storage/'. $b->kamera->gambar}}" alt="" width="150px"></td>
+                <td>{{$b->lensa->tipe}}</td>
+                <td><img src="{{'storage/'. $b->lensa->gambar}}" alt="" width="150px"></td>
                 <td>{{$b->tanggal_pinjam}}</td>
                 <td>{{$b->tanggal_kembali}}</td>
                 {{-- <td>{{date_diff($b->tanggal_pinjam, $b->tanggal_kembali)}}</td> --}}
                 <td>{{$b->harga_sewa}}</td>
                 <td><form action="{{ route('sewa.destroy',$b->kode_pinjam) }}" method="POST">
-                    {{-- <a class="btn btn-primary" href="{{ route('sewa.edit',$b->kode_pinjam) }}">Edit</a> --}}
+                    <a class="btn btn-primary" href="{{ route('sewa.edit',$b->kode_pinjam) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
