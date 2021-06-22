@@ -59,16 +59,23 @@ Route::middleware(['cekRole:1'])->group(function () {
     Route::resource('kamera', KameraController::class);
     Route::resource('lensa', LensaController::class);
     Route::get('/laporan/barang', [KameraController::class, 'cetak_pdf']);
+    Route::get('/laporan/barangLensa', [KameraController::class, 'cetak_pdfLensa']);
     Route::resource('peminjaman', PeminjamanController::class);
     Route::resource('merek', MerekController::class);
     Route::get('/laporan/merek', [MerekController::class, 'cetak_pdf']);
     Route::resource('/user', UserController::class);
     Route::get('/laporan/user', [UserController::class, 'cetak_pdf']);
-    Route::get('/pinjamLensa', [PeminjamanController::class, 'indexPinjamLensa'])->name('lensaAdmin');
-    // Route::get('/pjmLns', function () {
-    //     return view('User.dataPinjamUserKamera');
-    // });
+    Route::get('/laporan/sewaKamera', [SewaController::class, 'cetak_pdfSewaKamera']);
+    Route::get('/laporan/sewaLensaAdmin', [SewaController::class, 'cetak_pdfSewaLensa']);
+    Route::resource('pinjam', UserPeminjamanController::class);
+    // Route::get('/sewaLensa', [UserPeminjamanController::class, 'indexLensa'])->name('riwayatLensa');
+    Route::get('/riwayatLensaAdmin', [UserPeminjamanController::class, 'indexLensaAdmin'])->name('riwayatLensaAdmin');
+    Route::get('/riwayatAdmin', [UserPeminjamanController::class, 'indexAdmin'])->name('riwayatAdmin');
+    Route::get('/lensaAdmin', [PeminjamanController::class, 'indexAdminLensa']);
+    Route::get('/kameraAdmin', [PeminjamanController::class, 'indexAdminKamera']);
+    // Route::get('/pinjamLensa', [SewaController::class, 'indexLensaAdmin'])->name('pinjamLensa');
 });
+
 
 Route::middleware(['cekRole:0'])->group(function () {
     Route::get('/laporan/anggota', [anggotaController::class, 'cetak_pdf']);
@@ -80,3 +87,6 @@ Route::middleware(['cekRole:0'])->group(function () {
     Route::get('/sewaLensa', [UserPeminjamanController::class, 'indexLensa'])->name('riwayatLensa');
     Route::get('/pinjamLensa', [SewaController::class, 'indexLensa'])->name('pinjamLensa');
 });
+
+// Route::resource('pinjam', UserPeminjamanController::class);
+// Route::get('/sewaLensa', [UserPeminjamanController::class, 'indexLensa'])->name('riwayatLensa');

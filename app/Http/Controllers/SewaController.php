@@ -100,7 +100,6 @@ class SewaController extends Controller
      */
     public function destroy($kode)
     {
-
     }
     public function cetak_pdf()
     {
@@ -113,6 +112,20 @@ class SewaController extends Controller
     {
         $pinjam = Peminjaman::with('lensa')->with('user')->get();
         $pdf = PDF::loadview('User.cetakLensa', ['pinjam' => $pinjam]);
+        return $pdf->stream();
+    }
+
+    public function cetak_pdfSewaKamera()
+    {
+        $pinjam = Peminjaman::with('kamera')->with('user')->whereNotNull('id_kamera')->get();
+        $pdf = PDF::loadview('cetakSewaKamera', ['pinjam' => $pinjam]);
+        return $pdf->stream();
+    }
+
+    public function cetak_pdfSewaLensa()
+    {
+        $pinjam = Peminjaman::with('lensa')->with('user')->where('id_lensa', '!=', 0)->whereNotNull('id_lensa')->get();
+        $pdf = PDF::loadview('cetakSewaLensa', ['pinjam' => $pinjam]);
         return $pdf->stream();
     }
 }

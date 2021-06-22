@@ -15,7 +15,7 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $pinjam = Peminjaman::with('kamera')->with('user')->get();
+        $pinjam = Peminjaman::with('kamera')->with('lensa')->with('user')->get();
         return view('User.dataPinjamUser', ['pinjam' => $pinjam]);
     }
 
@@ -28,7 +28,18 @@ class PeminjamanController extends Controller
     public function indexPinjamLensa()
     {
         $pinjam = Peminjaman::with('lensa')->with('user')->where('id_lensa', '!=', 0)->get();
-        return view('User.dataPinjamUserKamera', ['pinjam' => $pinjam]);
+        return view('User.dataPinjamUserLensa', ['pinjam' => $pinjam]);
+    }
+
+    public function indexAdminLensa()
+    {
+        $pinjam = Peminjaman::with('lensa')->with('user')->where('id_kamera', 'IS NOT NULL')->get();
+        return view('peminjamanLensa', ['pinjam' => $pinjam]);
+    }
+    public function indexAdminKamera()
+    {
+        $pinjam = Peminjaman::with('kamera')->with('user')->where('id_lensa', 'IS NOT NULL')->get();
+        return view('peminjaman', ['pinjam' => $pinjam]);
     }
     /**
      * Show the form for creating a new resource.

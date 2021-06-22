@@ -34,11 +34,10 @@
     </thead>
     <tbody>
         @foreach ($pinjam as $b)
-            @if (Auth::user()->role == 1 ||Auth::user()->name == $b->user->name )
+            @if (Auth::user()->role == 1 || Auth::user()->name == $b->user->name && $b->id_kamera != 0 || $b->id_kamera != NULL )
             <tr>
                 <td>{{$b->kode_pinjam}}</td>
                 <td>{{$b->user->name}}</td>
-                {{-- <td>{{$b->lensa->tipe}}</td> --}}
                 <td>{{$b->kamera->tipe}}</td>
                 <td><img src="{{'storage/'. $b->kamera->gambar}}" alt="" width="150px"></td>
                 <td>{{$b->tanggal_pinjam}}</td>

@@ -8,7 +8,7 @@
     {{-- <a href="{{ route('lensa.create')}}" class="btn btn-primary"> Tambah Barang </a> --}}
     <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#createlensaModal">Tambah Barang</button>
     {{-- <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#editlensaModal" >Edit</button> --}}
-    <a class="btn btn-primary" href="{{ url('/laporan/barang') }}">  Download Data </a>
+    <a class="btn btn-primary" href="{{ url('/laporan/barangLensa') }}">  Download Data </a>
 
     <br>
     <br>

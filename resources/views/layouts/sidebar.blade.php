@@ -69,12 +69,12 @@
                 </a>
                 <ul class="sidebar-submenu collapse" id="layouts_menu">
                     <li class="sidebar-menu-item active">
-                        <a class="sidebar-menu-button" href="{{route('peminjaman.index')}}">
+                        <a class="sidebar-menu-button" href="{{route('riwayatAdmin')}}">
                             <span class="sidebar-menu-text">Kamera</span>
                         </a>
                     </li>
                     <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="{{route('lensaAdmin')}}">
+                        <a class="sidebar-menu-button" href="{{route('riwayatLensaAdmin')}}">
                             <span class="sidebar-menu-text">Lensa</span>
                         </a>
                     </li>

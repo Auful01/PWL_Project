@@ -29,12 +29,12 @@
             <th>Tanggal Pinjam</th>
             <th>Tanggal Kembali</th>
             <th>Harga Sewa</th>
-            <th>Action</th>
+            {{-- <th>Action</th> --}}
         </tr>
     </thead>
     <tbody>
         @foreach ($pinjam as $b)
-            @if (Auth::user()->role == 1 ||Auth::user()->name == $b->user->name && $b->id_lensa != 0 )
+            @if (Auth::user()->role == 1 ||Auth::user()->name == $b->user->name && $b->id_lensa != 0 || $b->id_lensa != NULL)
             <tr>
                 <td>{{$b->kode_pinjam}}</td>
                 <td>{{$b->user->name}}</td>

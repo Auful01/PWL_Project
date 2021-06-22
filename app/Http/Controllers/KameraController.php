@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kamera;
 use App\Models\kameraModel;
+use App\Models\Lensa;
 use App\Models\Merek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
@@ -162,8 +163,15 @@ class KameraController extends Controller
     }
     public function cetak_pdf()
     {
-        $kamera = kamera::all();
+        $kamera = kamera::with('merek')->get();
         $pdf = PDF::loadview('cetak', ['kamera' => $kamera]);
+        return $pdf->stream();
+    }
+
+    public function cetak_pdfLensa()
+    {
+        $lensa = Lensa::with('merek')->get();
+        $pdf = PDF::loadview('cetakLensa', ['lensa' => $lensa]);
         return $pdf->stream();
     }
 
