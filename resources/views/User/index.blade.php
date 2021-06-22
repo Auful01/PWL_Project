@@ -30,9 +30,9 @@
         <tr>
             <td class="table-plus">{{ $us + $user->firstitem() }}</td>
             <td>{{ $data->name }}</td>
-            <td>{{ $data->email}}</td>
             <td>{{ $data->username }}</td>
-                <td><a class="btn btn-primary" href="{{ url('/laporan/user') }}">  Cetak Kwitansi </a>
+            <td>{{ $data->email}}</td>
+                <td><a class="btn btn-primary" href="{{ url('/laporan/sewa') }}">  Cetak Kwitansi </a>
                     <form action="{{ route('user.destroy',$data->id) }}" method="POST">
                     <a class="btn btn-primary" href="{{ route('user.edit',$data->id) }}">Edit</a>
                          @csrf

@@ -60,6 +60,7 @@ Route::middleware(['cekRole:1'])->group(function () {
     Route::get('/laporan/merek', [MerekController::class, 'cetak_pdf']);
     Route::resource('/user', UserController::class);
     Route::get('/laporan/user', [UserController::class, 'cetak_pdf']);
+    Route::get('/laporan/sewa', [SewaController::class, 'cetak_pdf']);
 });
 
 Route::middleware(['cekRole:0'])->group(function () {
