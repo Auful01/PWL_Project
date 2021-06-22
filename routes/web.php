@@ -73,6 +73,7 @@ Route::middleware(['cekRole:0'])->group(function () {
     Route::get('/laporan/anggota', [anggotaController::class, 'cetak_pdf']);
     Route::resource('sewa', SewaController::class);
     Route::get('/laporan/sewa', [SewaController::class, 'cetak_pdf']);
+    Route::get('/laporan/sewaLensa', [SewaController::class, 'cetak_pdfLensa']);
     Route::get('/riwayat-pinjam', [PeminjamanController::class, 'index_riwayat'])->name('riwayat');
     Route::resource('pinjam', UserPeminjamanController::class);
     Route::get('/sewaLensa', [UserPeminjamanController::class, 'indexLensa'])->name('riwayatLensa');

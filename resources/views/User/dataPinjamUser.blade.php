@@ -10,7 +10,7 @@
     @if (Auth::user()->role == 0)
     <a href="{{ route('sewa.index')}}" class="btn btn-primary"> Pinjam Barang </a>
     @endif
-    <a class="btn btn-primary" href="{{ url('/laporan/barang') }}">  Download Data </a>
+    <a class="btn btn-primary" href="{{ url('/laporan/sewa') }}">  Download Data </a>
 
     <br>
     <br>

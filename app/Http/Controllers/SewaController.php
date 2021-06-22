@@ -7,6 +7,7 @@ use App\Models\Lensa;
 use App\Models\Peminjaman;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 use PhpParser\Node\Scalar\LNumber;
 
@@ -102,8 +103,15 @@ class SewaController extends Controller
     }
     public function cetak_pdf()
     {
-        $kamera = kamera::all();
-        $pdf = PDF::loadview('user.cetakSewa', ['kamera' => $kamera]);
+        $pinjam = Peminjaman::with('kamera')->with('user')->get();
+        $pdf = PDF::loadview('user.cetakSewa', ['pinjam' => $pinjam]);
+        return $pdf->stream();
+    }
+
+    public function cetak_pdfLensa()
+    {
+        $pinjam = Peminjaman::with('lensa')->with('user')->get();
+        $pdf = PDF::loadview('User.cetakLensa', ['pinjam' => $pinjam]);
         return $pdf->stream();
     }
 }
