@@ -45,8 +45,8 @@ text-transform: uppercase;
                 <td>{{$k->merek->nama_merek}} {{$k->tipe}}</td>
                 <td><img src="{{ 'storage/'. $k->gambar }}" width="100px"></td>
                 <td>{{$k->deskripsi}}</td>
-                <td>{{date('d/m/y', strtotime($k->tanggal_pinjam))}}</td>
-                <td>{{date('d/m/y', strtotime($k->tanggal_kembali))}}</td>
+                <td>{{$k->tanggal_pinjam}}</td>
+                <td>{{$k->tanggal_kembali}}</td>
                 <td>{{$k->harga_akhir}}</td>
                 </tr>
             @endforeach

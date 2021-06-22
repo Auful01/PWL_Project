@@ -99,11 +99,11 @@
                       <span class="sidebar-menu-text">Penyewaan</span>
                   </a>
               </li>
-              <li class="sidebar-menu-item">
+              {{-- <li class="sidebar-menu-item">
                   <a class="sidebar-menu-button" href="{{route('anggota.index')}}">
                       <span class="sidebar-menu-text">Anggota</span>
                   </a>
-              </li>
+              </li> --}}
 
           </ul>
       </li>

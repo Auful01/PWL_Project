@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Merek;
 use Illuminate\Http\Request;
+use PDF;
 
 class MerekController extends Controller
 {
@@ -89,5 +90,11 @@ class MerekController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function cetak_pdf()
+    {
+        $merek = Merek::all();
+        $pdf = PDF::loadview('cetakMerek', ['merek' => $merek]);
+        return $pdf->stream();
     }
 }

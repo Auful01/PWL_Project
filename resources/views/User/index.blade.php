@@ -6,7 +6,7 @@
 @endif
 <div id="table-user" >
     <a href="{{ route('user.create')}}" class="btn btn-primary"> Tambah User </a>
-    <a class="btn btn-primary" href="{{ url('/laporan/user') }}">  Download Data </a>
+    <a class="btn btn-primary" href="{{ url('/laporan/sewa') }}">  Download Data </a>
 
     <br>
     <br>

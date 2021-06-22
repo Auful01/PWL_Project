@@ -57,6 +57,7 @@ Route::middleware(['cekRole:1'])->group(function () {
     Route::get('/laporan/barang', [KameraController::class, 'cetak_pdf']);
     Route::resource('peminjaman', PeminjamanController::class);
     Route::resource('merek', MerekController::class);
+    Route::get('/laporan/merek', [MerekController::class, 'cetak_pdf']);
     Route::resource('/user', UserController::class);
     Route::get('/laporan/user', [UserController::class, 'cetak_pdf']);
 });
