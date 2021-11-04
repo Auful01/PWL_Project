@@ -43,9 +43,9 @@
                         <a href="#" class="btn btn-warn">UPLOAD</a>
                     @endif
                 <td>{{$b->deskripsi}}</td>
-                <td>@currency($b->harga_sewa)</td>
+                <td>{{$b->harga_sewa}}</td>
                 <td>
-                    <button class="btn btn-primary btn-modal-editKamera"  data-bs-toggle="modal" data-bs-target="#editKameraModal" data-kode="{{ $b->kode }} " data-tipe="{{ $b->tipe }}" data-merek="{{$b->merek->id_merek}}" data-gambar="{{' storage/'. $b->gambar}}" data-deskripsi="{{$b->deskripsi}}" data-harga="@currency($b->harga_sewa)" data-url="{{route('kamera.update', $b->kode)}}">Edit</button>
+                    <button class="btn btn-primary btn-modal-editKamera"  data-bs-toggle="modal" data-bs-target="#editKameraModal" data-kode="{{ $b->kode }} " data-tipe="{{ $b->tipe }}" data-merek="{{$b->merek->id_merek}}" data-gambar="{{' storage/'. $b->gambar}}" data-deskripsi="{{$b->deskripsi}}" data-harga="{{$b->harga_sewa}}" data-url="{{route('kamera.update', $b->kode)}}">Edit</button>
                     <form action="{{ route('kamera.destroy',$b->kode) }}" method="POST">
                     {{-- <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editKameraModal" href="{{route('kamera.index',$b->kode)}}">Edit</a> --}}
                     {{-- <button type="button" class="btn btn-success" id="editKameraModal" data-item-id="{{$b->kode}}">edit</button> --}}

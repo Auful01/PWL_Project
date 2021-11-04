@@ -62,6 +62,54 @@
 {{-- Datetime Picker --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
+{{-- SWAL --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register("/sw.js").then(function(reg) {
+            console.log(“Service worker has been registered for scope: ” + reg.scope);
+        });
+    }
+    </script>
+
+<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAXK4Orxl2CghIQvKiUPtkhEngSgzteqE0",
+    authDomain: "hello-world-pwa-8669c.firebaseapp.com",
+    databaseURL: "https://hello-world-pwa-8669c.firebaseio.com",
+    projectId: "hello-world-pwa-8669c",
+    storageBucket: "hello-world-pwa-8669c.appspot.com",
+    messagingSenderId: "660239288739"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function() {
+            console.log('Service Worker Registered');
+      });
+  }
+</script>
+<script>
+  const messaging = firebase.messaging();
+
+  messaging.requestPermission()
+  .then(function() {
+    console.log('Notification permission granted.');
+    return messaging.getToken();
+  })
+  .then(function(token) {
+    console.log(token);
+  })
+  .catch(function(err) {
+    console.log('Unable to get permission to notify.', err);
+  })
+</script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#tableku').DataTable();
@@ -94,15 +142,15 @@
                 url: '/merek-kamera',
                 success:function(data, textStatus, jqXHR)
                 {
-                    let kntl = "";
+                    let code = "";
                     data.forEach(element => {
                         if(element.id_merek == mrk){
-                            kntl += `<option value="${element.id_merek}" selected class="merek">${element.nama_merek}</option>`;
+                            code += `<option value="${element.id_merek}" selected class="merek">${element.nama_merek}</option>`;
                         }else{
-                            kntl += `<option value="${element.id_merek}" class="merek">${element.nama_merek}</option>`;
+                            code += `<option value="${element.id_merek}" class="merek">${element.nama_merek}</option>`;
                         }
                     });
-                    $('.kntl').append(kntl);
+                    $('.code').append(code);
                 }
             });
         });
@@ -128,15 +176,15 @@
                 url: '/merek-lensa',
                 success:function(data, textStatus, jqXHR)
                 {
-                    let kntl = "";
+                    let code = "";
                     data.forEach(element => {
                         if(element.id_merek == mrk){
-                            kntl += `<option value="${element.id_merek}" selected class="merek">${element.nama_merek}</option>`;
+                            code += `<option value="${element.id_merek}" selected class="merek">${element.nama_merek}</option>`;
                         }else{
-                            kntl += `<option value="${element.id_merek}" class="merek">${element.nama_merek}</option>`;
+                            code += `<option value="${element.id_merek}" class="merek">${element.nama_merek}</option>`;
                         }
                     });
-                    $('.kntl').append(kntl);
+                    $('.code').append(code);
                 }
             });
         });
@@ -148,6 +196,7 @@
             let gbr = $(this).data('gambar');
             let desc = $(this).data('desc');
             let hrg = $(this).data('harga');
+            // alert(hrg);
             // let tglPjm = $(this).data('tglPinjam')
             // let tglKbl = $(this).data('tglKembali')
             // let url = $(this).data('url');
@@ -160,15 +209,15 @@
             $('.harga_sewa').val(hrg);
             // $('.tanggal_pinjam').val(tglPjm);
             // $('.tanggal_kembali').val(tglKbl)
-        })
+        });
 
 
         // let days =
         // let dayStart = start.getTime();
 
-        $('#tanggal_kembali').on('change', function() {
-            let start = new Date($('#tanggal_pinjam').val());
-            let end = new Date($('#tanggal_kembali').val());
+        $('.tanggal_kembali').on('change', function() {
+            let start = new Date($('.tanggal_pinjam').val());
+            let end = new Date($('.tanggal_kembali').val());
             let days = (end - start) / (1000 * 60 * 60 * 24);
 
             let harga = $('.harga_sewa').val();
@@ -178,6 +227,21 @@
             console.log(harga);
             console.log(total);
             $('#harga_akhir').val(total);
+        });
+
+        $('.toggle-class').on('change',function() {
+            let status = $(this).prop('checked') == true ? 1 : 0;
+            let user_id = $(this).data('id');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changeStatus',
+            data: {'status': status, 'user_id': user_id},
+            success: function(data){
+                console.log(data.success)
+            }
+         });
+         swal("Good Job","Sukses","success");
         });
 
     });

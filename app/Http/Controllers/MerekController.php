@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Merek;
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -13,6 +14,8 @@ class MerekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $merek = Merek::all();

@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use PDF;
+use Aws\S3\S3Client;
+use function App\Helpers\upload;
+
 
 class KameraController extends Controller
 {
@@ -51,9 +54,18 @@ class KameraController extends Controller
      */
     public function store(Request $request)
     {
+        $img = $request->file('gambar');
+        $endpoint = 'https://objectstorage.ap-sydney-1.oraclecloud.com/p/2_fpo_W9QG5amBFf_B1sMw6ZhN-9wpcK1d6aDbYe_2aMfevOG0PNKMl4t8HsXXK7/n/sd1gwrxto4nv/b/bukcet-uts/o/';
+        $key = '1a0b022081881c456750111459dc665dba67a2c6';
+        $secret = 'tX13ja34Mk4/IP+01t1Sv6Duu5N6A6IIAIWBEIQ9snU=';
+        $region = 'ap-sydney-1';
+        $folder_name = 'gambar';
         if ($request->file('gambar')) {
             $img_name = $request->file('gambar')->store('gambar', 'public');
         }
+        // dd($res);
+        // $img_name = $endpoint . $folder_name . '/' . $img->getClientOriginalName();
+
 
         // kamera::create([
         //     'title' => $request->title,
@@ -61,13 +73,13 @@ class KameraController extends Controller
         //     'gambar' => $img_name,
         // ]);
 
-        $request->validate([
-            'kode' => 'required',
-            'tipe' => 'required',
-            'deskripsi' => 'required',
-            'id_merek' => 'required',
-            'harga_sewa' => 'required'
-        ]);
+        // $request->validate([
+        //     'kode' => 'required',
+        //     'tipe' => 'required',
+        //     'deskripsi' => 'required',
+        //     'id_merek' => 'required',
+        //     'harga_sewa' => 'required'
+        // ]);
 
         $kamera = new Kamera;
         $kamera->kode = $request->get('kode');

@@ -53,7 +53,7 @@ Route::resource('anggota', anggotaController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
+Route::resource('kamera', KameraController::class);
 // Route Admin
 Route::middleware(['cekRole:1'])->group(function () {
     Route::resource('kamera', KameraController::class);
@@ -68,6 +68,7 @@ Route::middleware(['cekRole:1'])->group(function () {
     Route::get('/laporan/sewaKamera', [SewaController::class, 'cetak_pdfSewaKamera']);
     Route::get('/laporan/sewaLensaAdmin', [SewaController::class, 'cetak_pdfSewaLensa']);
     Route::resource('pinjam', UserPeminjamanController::class);
+    Route::get('/changeStatus', [UserController::class, 'changeStatus']);
     // Route::get('/sewaLensa', [UserPeminjamanController::class, 'indexLensa'])->name('riwayatLensa');
     Route::get('/riwayatLensaAdmin', [UserPeminjamanController::class, 'indexLensaAdmin'])->name('riwayatLensaAdmin');
     Route::get('/riwayatAdmin', [UserPeminjamanController::class, 'indexAdmin'])->name('riwayatAdmin');

@@ -9,7 +9,7 @@
                 <img src="{{'storage/'. $k->gambar }}" class="card-img-top" alt="..." width="150px">
                 <div class="card-body">
                 <h5 class="card-title">{{$k->merek->nama_merek}} {{$k->tipe}}</h5>
-                <p class="card-text"><b>Deskripsi</b> <br>{{$k->deskripsi}} <br> <b>@currency($k->harga_sewa)</b>/Hari</p>
+                <p class="card-text"><b>Deskripsi</b> <br>{{$k->deskripsi}} <br> <b>{{$k->harga_sewa}}</b>/Hari</p>
                 <button type="button" class="btn btn-primary btn-modal-sewa" data-toggle="modal" data-target="#sewaModal" data-kode="{{$k->kode}}" data-tglPinjam="{{$k->tanggal_pinjam}}" data-tglKembali="{{$k->tanggal_kembali}}" data-harga="{{$k->harga_sewa}}" data-merek="{{$k->merek->nama_merek}}" data-tipe="{{$k->tipe}}" data-desc="{{$k->deskripsi}}" data-gambar="{{'storage/'. $k->gambar }}">
                     Sewa Sekarang
                   </button>

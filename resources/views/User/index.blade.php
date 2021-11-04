@@ -24,6 +24,7 @@
             <th>E-Mail Address</th>
             <th>Level</th>
             <th> Action</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -32,7 +33,7 @@
             <td class="table-plus">{{ $data->id }}</td>
             <td>{{ $data->name }}</td>
             <td>{{ $data->username }}</td>
-            <td>{{ $data->email}}</td>
+            <td>{{ $data->email}} {{$data->status}}</td>
             <td>@if ($data->role == 0)
                 <?php echo 'User'; ?>
             @else
@@ -46,6 +47,9 @@
                         @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form></td>
+                <td>
+                    <input data-id="{{$data->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $data->status ? 'checked' : '' }}>
+                 </td>
             </tr>
 
         @endforeach

@@ -16,11 +16,14 @@
 {{--
     <link rel="stylesheet" href="{{url('url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')}}" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
 
+    {{-- Manifest --}}
+    <link rel="manifest" href="/manifest.json">
 
     <!-- Prevent the demo from appearing in search engines -->
     <meta name="robots" content="noindex">
 
     <script src="https://kit.fontawesome.com/0c295db722.js" crossorigin="anonymous"></script>
+
 
     <link type="text/css" href="{{url('assets/vendor/perfect-scrollbar.css')}}" rel="stylesheet">
 
